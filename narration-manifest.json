@@ -1,0 +1,61 @@
+{
+  "lessons": {
+    "respect-1": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/4dc4f732910a45b8bbac63380efc769a.mp4?Expires=1785043314&Signature=GPUs-IibsJjUazYwYqb2cw2uWUqc7imczW51BTBbpz3qNM~XfB46UDaKQgx34b-XJ3mq6YP~BVdEq3bV-awPhT5YC-I6X~odhtZhvDwvDsN43hMyLPuQOOOC2vHtcO4-x6pu9Zvo5al6NroBzGzYb9izZaokDp7NeNCtirNjSaqkrcJIzOYtTakPVOCZ4OOHcloVrHObPuSFHt13n0Em~vUwSlE0CxwI5YxjyKLZYOxdzb9BKoyV3uJeRajHbbiwDvVfslhJiwu2CZqnVOwVTxVnoR4Zk0NfkgSzbM9RV21BAWEWnJY6mvIk5izWWG01nXQaBO5MU7csvCITd7s~6w__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "respect-2": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/f8dd37832b8e4fc48540f9f679f0c1d7.mp4?Expires=1785043371&Signature=YVLovT4UPrnmcZcTfZn6-O6RTi-u3MROzOZ0CKQifuSrbE3eNEY6IX6ni50um5TiSrTLewqQjvZuaqeoJ9YPNusjha9xhsr2qHPXmmgOWqTAek0tv9i41YnbCbgyav7SxA52Cwq1KZ30SwLvfk6QPhKthh4tp-XlVRyvpdjogdmH9T-JdKWWXUthMJ9t64OuzQK3JSgmmbmwEi9q2xhark6MNvH54ZE-DdHPymx2Ko3-t1wPSwv-AV4gKfJJVyJUOq0RfGQx6DzsRiRcoj~nO4~GHfvdvw9ky9EsHr2832LCxoRhmAOU3uLS6OhrUFMA4x8OagKz7pvM0CCJZYRKXg__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "greet-1": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/6f0f8c2881744b708c865828c1759a7b.mp4?Expires=1785043442&Signature=fhVhiTAQZycIAVlrtNcmu4OAioZYN1KL8VTJqnqCw4HqgXMU2YYeYMHzLiCkEw9SQMCKZjtzzxLBOoEDLif6k0qZsdAclt3~zX7BKk1ZCYkflsYJc9TGuONXLT8BvfLsfKXqkfOrw3RCrKX6LOuS~Uxnf52UONl-FIWUws6fa5CXvPWh9RW3Bn57LgKF5~BcVE8U6WOtuu-7ghBvnt1qYWm2hEuc7VlMZT5Gc5dUSEYYW5luxfr-tAreFK6QTMKhcjFtjbXHw7cCGGOD34UVfztn~zpkbdd6AGkgBxyhyvEtdNn3hOM4ZBPgvlXnaCgsF04pcLk~wglXFDGalkI1kg__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "greet-2": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/72731a23e0e64fc987b6b5bacc853cf9.mp4?Expires=1785043500&Signature=iXxBi2MqN8MOWIUw-8L9CqenQ~YIDv1dExN~a~XMu0uJQXhB3SaJ-tZ~4WV91kLY6feQMRvi2Lo-6XLX5NExHb5Ph48pxc18ttT3IViS4HM2hfZSUYhm18wV6mUtGrJ2~vjzO~mIS7NK29J6CG1t3H2OIBPDM5E6PITvKMfJERKgsEFRd~7hwBRAyzaEB-VA7-duvUI-3MxrAbMBRDyYQfKYIbIH-RDHu5tQEgsagaL16PJnaJq7WxNEcwMp0ePsKHT0nHZOBwzDipbIEJDEqZExHWLFjSZJCdT9fWZMV4f-iB2e7LTcR1eu53EJWYhazAL6BJ6fZHvieo1a17iMqw__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "convo-1": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/df9d1897548d4a41888c02d079884079.mp4?Expires=1785043552&Signature=qU8sWVLqR0319jm6ypbsZ4JpeMDpPnzqOtZt6QxcKcQhV5LZ2XFZAHrnKZxhdxZrETkDs4honVHay~3VWw~PvXHEq79itpbt5~dQYPNZQ8NoBiqXVH-g8Bx34T~hhXva3pp0lWiAirdRYNmFrrgRKJNnzUpObyDuCkX99I3xF9sq18oCOKfhB8VGVE4DA89yxKm58orMb7EjuFm0vF3tFcKdV8AmQq63qkNrfrd6ehMyuy6L9pC-C-5DJimG72V0vLjlk1-nISTuVTKtONqeiOgalsQPrDWdNCoY2XG0Xi5TShA~sRlGBi7rQ6RJiFI93noppUw-GClg43MHjHcyvw__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "convo-2": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/8ac11686c1c243cb9f7992773cd690ff.mp4?Expires=1785043602&Signature=K8sVhpIWqGu4s1gCiRJahgD5Co2Pt4ilnklrXlN6214y4JAszVVZg7rrdaOKbNK6D1GLMXiPTllWQkoponAr~D0B46J5rK86A1zZt1E6~3qmJK-dqy3b4VcGUe4I8rrVxSeApea7RpvR84woR6Msm27t-bYd7vtn9KhhvV2RCwtWS3QTBa8xNB9VeZig~MJsS3WWTclGN5ELzmLVTnw9LgySeeu~GVfhIiNIeGgK69UMdHpMGjNIWPVnobNFXW6B44udrh8VXjTHqx3bNmPYEI3ljQ3Hnt69q~GRNtTlW0VV8T9UiKWcJsWhLXX8Vz373ZVz12TTYcjpkzWcIda18w__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "polite-1": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/3f3ebdd688d2455a8d03c525d333eaa7.mp4?Expires=1785043650&Signature=c80sxYHVT3J82D0LnGj9VvXLiQXpjFhW707b~p6-P-EYQ1lmyfohTyLICyXYng1logSU3H3QI242WW7BXCpn6jAJ2Mjm644iw5QqxiHg9rutbdlOy5KC9R0WZTlMgfKKKkV0klCxLSTOHWi2gO~ZEE~n94FJq~Duate4P9PKH3-d-CSx-5w1ftwyUfn~LY7NtituNOYnYpAsQu3EER4A3Vvh04z99fS9LtTqz0IfMD7McziayBVPjIVNBtmVFNwd~fCYqwSB-TysxJMfu3EhoyhP-~gLGX2SV-~-eB-~ULZ5mJFJffCAuDr7Bw2hc2TcbUeQ00fQ-xC6kpo1rV82cA__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "dining-1": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/ab64306070c94c7fbfb4e3ac328af97e.mp4?Expires=1785043715&Signature=eAO3dG4Zaxs5xmKTYRE1DmGbHr6sBStwreMk4RgCHZgZd4Df1hjv9WcEPr-45oIwEFFkJdcslDS8knbb~2OOT7CNYdVftmbXZhm0ZlJIbYn-qU85mk~X1dRgtJNpJMsC1M7XZLF4cSdCEEIQzu~mBq8qlVLvPiMmNJvQ1rxP1y-lFO9LXzoO8xjiWkJjUUkAhrwhJrHxDvjb-6Ufs4YH0xT0TfuoMG4WBeqBVC1ye3F0ciCySLICAXNvAqpYg1I5mH5I2WhB9LOaULKsdBFMpakHHtiool8osLO~WKkQg3QeuLIjLhkLopSLBdgSOhoLh9z5XE6X2WixR5cl0VmhkA__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "dining-2": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/dba4aca2e6e04f29a5e761df3997285b.mp4?Expires=1785043777&Signature=QVTSR6BjvxfINDKERDXCIqhcC4RNY9jd84sYApyIOlRBsFlji9tSXsJwJioK-JonT1ViReUl9hnY4u1w7nnFGI5FA9Ams0Hu8sBj8qoSY4UW5uUFRCg50NRauG4S3X5oA2ODFWW4i-ghSXO3j1tT0NONjZm3U87fbKLPF6M4rb0nISY9l9OpglAnyw6AHXTQaRD2HJksUVnheds~kL4rDIPKDY6~wM7CHP7rZ32GT8lBIjKBzhId0jZNESBdHZtT1v5BUuiLuoKaaqM2fCp11iB65AfJEj1XISS4fzoi0FUv6bzWtbaAegvBie1Kdig0Ca1XKv-RHv0u6SDZWLX0Yg__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "digital-1": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/15b0c9f784e94095ad2b72a8a54f7447.mp4?Expires=1785043836&Signature=SUQwDDPZFuqc24-0snz4LQOLsWbh0NW4M8O5OhIFaD0NRtYVklO9Gf6-6Eas7pam0u9ECHyOYZPtBWJN~33uWaP6fQcbfsHzmZpaAqsuBXM2Z9J6z5vSBXjRIxAR9Fe6tkIERKccHr89qxgoAuuzxZMJttbG88tijOan3v3WPYmrvDAlParLJvOzEyGXtLivx9UKlDeMhDOZ0RRDQvYrznSHy3I~QDSStzrsrbOMvUTHgjUrf1lfW4sl0dbrEt66NlG8a~DgFSRbU7ffMAFVEBUe4LmmvCxh3ReuyiuBOdh589Bn-DGhWuImd5r4nZaGOW1zXC9yzHVW4NXZ1OOHJA__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "digital-2": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/a56550c34f5440f1a54909cbfb8d9869.mp4?Expires=1785043909&Signature=f7WNzvjpc1nSWsnLVX6PhQqCYM1YBeXMH-UG-fkqznodAYEIvE2S6hq9~PmRKCHK90oyStEKvzKX5HYF0UrF8aRRr8hVUHk3y7k1W-x2KgowSkhDB2mXRSkJEIBc5aOEOwS3heJ1fCJbvbdYHCZYxKM-MBaMDqaugyjDU0rvPjf1~M4FYWHIf03s979fGMX8bfogidaZDInGLKo8QljVrP0Nu5U8O3wB30RAmlJW~CipM3S50TtZPRhKVkzQoh9qtFZx8uMB8xFDc3-oueulqOZi3cjEJtwQVgbiflMDRJeHNYQNxW4f4KVpLFpugPa5b0~nBc~gBhUpQxd8E41afQ__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "confidence-1": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/b2c78640866a4166ae567caf0d3b945a.mp4?Expires=1785043960&Signature=Jqm2ZjBylho4zhL4xJszIHP1uQj-ltqfAtWTKUjFAeHdCiOEky7W44DTWVlUh1PwruysFqX8lmiQ4yTHOmc1LVTncImDy4mq7PJ-4VbroILcjCVTdlsnwUy5UCre3YERdIKlx6un-k2nO9THeJ9NthaLjfzAXV6C4QIBEDaln8NNEImdKKAFAmU10pxtMiVpI-AjPgF9PqeeJMeup2LLaaai47JvV4Bzncl4cZBKvJ1CLQR15eS-4ZukaAb-SO1F4GoBc-eo18t7GkyGM0ZZ9a~P-40uCSKKTEKA~R19gsL8bjWE85BzeqByJuCI2QLCnAuS6EqyO5TM~wu6Jr-Uhw__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "confidence-2": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/e0b27260567c4e77922bdac3a490a100.mp4?Expires=1785044010&Signature=o9XkBUOKPzxRnX5n9LlHNAF2R2AGLDC3oHX2I7F3DxSoXZeLMhDQfISu4ZgjUFCrn-XVV-Q91IJ3SicY6JrOFPU14sdeAbz7K6S9xPr-ajHI40fqC0-xPZWKwFEyEAy5i8anxDDf5~KkF~ihKQqGuTTD0CiMe-i87yNW1nyPPfdBx6STBtln6LVP1KDSaOhw9~LZyvImnsCiuXIyYDZUwpdtgOHH4VhSp1i7TIH-pX4PoLayS-LcV7udc~tO4hAlIlWHXbi-VjQEY62yNc2jYoiuQPbecGfms~ZtMBVPgG2G7BcGg86BcJ4arrb5NtymJ-mYThnZBAeoyvqHQnlAZQ__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "host-1": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/dde8d4a569ac4e6aaa9eb206f793e13a.mp4?Expires=1785044081&Signature=WRwwcoNgICpnz6IFZ7lwQPOK9AKmliq5YMAzUovyOXjf73Hbp87q9cly11Ff8p6vLk9YX~O0WBeBl2G-eeP2bOmUqmoyrSK9p5SJJqF8yItJmcAfFmMNwEliMw8lQ0kBxwFkZPImBAGP2yNaEj1pGsGroyI7aLynrp-72hBrSKE~FGNv1mW0oTjUI2uDf5tG-a6fXUGZdm9pWy~s~7LhH6Y0ZF-oEp0O4aa4qqkghfYFP13VuPudJTnwMR1k2CvRa-QDVRXeM0PdAEkxrlk5X8kzuAMuA5EfHZCMhV5PyF33RDgG3udJeY2WCqXIemtyEvBA8ds7yngjGP3Phz5INw__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "host-2": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/0524deaef512460da456dd7d55745224.mp4?Expires=1785044140&Signature=Mnj4GNmeWr7w2npiqG9htODJdM9d1xjc24Cfi9HbX529O9dZyDHax1rXyuLQ6rOCrGnkIcEFqpvegpAQluFwXnB4aPVqdrutotCUOGnlpcIPiFHCXAmgSDqHX~Q7yVP12Sh7dQrhXZSAJpjqmmLslXWoV6dIKRmjX7CUE7XCCYNt3GPrIlw7ECWK0JIP6tQt82U6rHH5n2xIPCOzk4DgC4zVHTLK~yLdBSHqiFa0V9pZ3wVdggKARfeJ64Hp54i4xcm5Tuepy5-OxxZ7oXJnrd5e0OIw-2H9WIL9g52nWxEp3QhqBl4xYIW4HLLBWMxYXgJMSgcXP5OK6ejqhjrMzQ__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "thanks-1": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/e23fd6749a5440cbaa64e4abcfee06ab.mp4?Expires=1785044202&Signature=UhVTByxCAPYN2MhqPG3oFFV5NEfUI5bZQCBrDKUhlFd03JQySfxWl4RjHWgdyQqYa0Uvi1neeVFsgTir1FlS5hiDiClchf~c~JvD~702Zvgt9KaJKrvXTR-ZMM1ZoTk3XUI5wqTi3KVeDeRazqQIT0BenxuGSqIVhmCDrBPjbSQMQAlq0zeieUiSm7Pp4PjsxShGfA3h6Vmy9XazoblWMygoH8fQPlVs7H7~p~681p~rJYbxGU1huFRoMcvmvBvYTSi4jpgR2KBgJVRhLfJ9pGn1UzrfmNJkFOHOCWNGKfS1uee1ctha6BKMmPw75Zy1Y6M2ziR1n-Epe6Tnd5LuPQ__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "thanks-2": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/549e77426b934db68426c133556d1653.mp4?Expires=1785044263&Signature=RspdxiP07PKks1jyyiaV3dyvQWOxWQ9fIZFpHE2MH6srWuWV8tuvBSNAJ1GxkOgkZpAwIYhBDKEblYEC3~uCqKBvln82VNI8qPxEi1DsKAsRMmffta77NtupS89-~3rIeC7Epn4FZsruHCpIwvONSXNILwyE-X357BhrcuH-BJGU0TknuHb9Ls-z0Yk3mkp4eAAe4yuClcOMgLU1E8HQgVxslxdPZkGAp5f0i9Idnk9lvBQkamhoKjZR5gF7~WUkq5PM4bw2yfw8Ev1FsE3P9sMuVcA2Slx81LBbQYfEweEQ4bUyquiw2M~ceDAd8E7iunvNY5i0OujlpxZN8SI35Q__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "pro-1": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/10c253092f6c4ff7bcfff5af1a6bdcb7.mp4?Expires=1785044342&Signature=NXJyyvI4uqknzU7XCURMz5Q5HIjiaGoxZAVHKvZzDZRM-rf1hgW~id4nvbIRO3lKAP7xgE9DA77l53fTNTI804O5u5fp8Hr8CvPqkVT0yN~by25e8NHSB8~HFkwgrkfVTge~~iEP1YWKIO0XAgoqOTHHnxuOk2dNpAJq91cCVigzCSWyTuK5wWJoO-6DUge~npm5MkD3a8I9RsgfFHd9NPZ3-S3mzulnI3P3PaZgxm6UQ~sUz2YW~tGDD0~9~BgBgMVtYcdoQehW7L-U5s40gbLuREriow6T8PEiOLV0k43eYiPIQlcfW3R3z4n4MYDu5q~ig~HeV-FX3C6fdOFBGw__&Key-Pair-Id=K38HBHX5LX3X2H"
+    },
+    "pro-2": {
+      "video": "https://files2.heygen.ai/aws_pacific/avatar_tmp/58aa9da7e96b40e58b1e59999d4d7666/7e3e695e30e5441592f52b0300489453.mp4?Expires=1785044425&Signature=qKqPOKMfj~g6nDp7ofy3kw-UeCcOTgQFNL8ELs63xcOX7O~tIA8tjJi78cq0K3H53Rz-BPc~PMBo6KMycgj8vwMCpC2E6uX~0p-RnnpR9Drnqujkssxxw1upfE35Uk5wVw5zMaMH32Y4XPBPcDn9fVtNw6W-47Wp5xEptT90vzxLEOpsF4pew0Bg3QaPOWLxEuJ98nM9g3HUGRGCQJGeVYo3bX3O3efElcxLWFUi3zjEvSkJ5yVrdzLe3eB92iU0vg1267yOhHZO91X6bMMP5VcUk2yt7faEhau65t1fXwgokVekwzwW-6NJHVNd1dPfTAvcUQnCbqI7SvbbXSBdBw__&Key-Pair-Id=K38HBHX5LX3X2H"
+    }
+  }
+}
