@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Live Coach (preview) — Poise &amp; Purpose Academy</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:760px;margin:0 auto;padding:24px;color:#241B33;background:#FAF7F3;line-height:1.55}
+  h1{font-size:1.5rem;margin:0 0 4px}
+  .mut{color:#6B6472;font-size:.9rem}
+  fieldset{border:1px solid #E9E1D5;border-radius:12px;padding:16px;margin:16px 0;background:#fff}
+  legend{font-weight:800;padding:0 6px}
+  label{display:block;font-weight:700;font-size:.82rem;margin:10px 0 4px}
+  input{width:100%;padding:10px 12px;border:1px solid #E9E1D5;border-radius:8px;font:inherit;box-sizing:border-box;font-family:ui-monospace,monospace;font-size:.82rem}
+  button{background:#241B33;color:#fff;border:0;border-radius:999px;padding:11px 18px;font-weight:800;cursor:pointer;font-size:.95rem}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .warn{background:#FBEFD9;border:1px solid #E8C878;border-radius:10px;padding:12px;font-size:.85rem;margin:12px 0}
+  code{background:#EFE9DE;padding:1px 5px;border-radius:5px;font-size:.85em}
+  #stage{margin-top:14px}
+  #err{color:#B5473A;font-weight:700;margin-top:8px}
+  .chk{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.9rem;margin-top:12px}
+  .chk input{width:auto}
+</style>
+</head>
+<body>
+<h1>Live Coach — preview</h1>
+<p class="mut">A talking-face etiquette coach powered by LiveAvatar. This preview uses the LiveAvatar <b>embed</b> (FULL mode): HeyGen's model answers, steered by the "context" you configure, with HeyGen's moderation.</p>
+
+<div class="warn">
+  <strong>Read before enabling for children.</strong> This preview does <em>not</em> run the app's coded child-safety
+  guardrails (the never-keep-secrets / talk-to-a-trusted-adult logic). For a kid-facing launch, configure a
+  strict, age-appropriate <b>context/persona</b> in the LiveAvatar dashboard — or use the guardrail-driven build.
+  Keep <b>Sandbox mode</b> on while testing: it's free (no credits). Live sessions consume credits.
+</div>
+
+<fieldset>
+  <legend>Set up</legend>
+  <p class="mut">Get your <b>LiveAvatar</b> API key at <code>app.liveavatar.com/developers</code> (separate from your HeyGen key)
+  and set it in Netlify as <code>LIVEAVATAR_API_KEY</code>. Create a kid-appropriate avatar + context in the LiveAvatar
+  dashboard and paste their IDs below. The pre-filled IDs are HeyGen's public sandbox demo, so you can see it work first.</p>
+  <label>Avatar ID</label>
+  <input id="avatarId" value="65f9e3c9-d48b-4118-b73a-4ae2e3cbb8f0" />
+  <label>Context ID (persona / knowledge base)</label>
+  <input id="contextId" value="158f5d55-2d4f-11f1-8d28-066a7fa2e369" />
+  <div class="chk"><input type="checkbox" id="sandbox" checked /> <label for="sandbox" style="margin:0">Sandbox mode (free, no credits)</label></div>
+  <div class="row" style="margin-top:14px">
+    <button id="start">Start live coach</button>
+    <span id="status" class="mut"></span>
+  </div>
+  <div id="err"></div>
+</fieldset>
+
+<div id="stage"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+$('start').onclick=async ()=>{
+  $('err').textContent=''; $('status').textContent='starting…'; $('start').disabled=true;
+  try{
+    const r=await fetch('/.netlify/functions/liveavatar-embed',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ avatarId:$('avatarId').value.trim(), contextId:$('contextId').value.trim(), sandbox:$('sandbox').checked })});
+    const raw=await r.text(); let d; try{ d=JSON.parse(raw); }catch(e){ throw new Error('HTTP '+r.status+' — '+(raw.slice(0,200)||'empty response')); }
+    if(!d.url) throw new Error(d.error || 'No embed URL returned');
+    $('status').textContent = d.sandbox ? 'running (sandbox — free)' : 'running (live — using credits)';
+    $('stage').innerHTML='<iframe src="'+d.url+'" allow="microphone" title="Live Coach" style="width:100%;aspect-ratio:16/9;border:none;border-radius:12px;box-shadow:0 10px 30px rgba(36,27,51,.15)"></iframe>';
+  }catch(e){ $('status').textContent=''; $('err').textContent='Could not start: '+e.message+' (is LIVEAVATAR_API_KEY set + redeployed?)'; }
+  $('start').disabled=false;
+};
+</script>
+</body>
+</html>
