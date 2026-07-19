@@ -8,6 +8,7 @@ index.html                            # the app (runs standalone)
 netlify.toml                          # Netlify config
 netlify/functions/etiquette-coach.js  # AI coach proxy (safety guardrails)
 netlify/functions/generate-narration.js # HeyGen avatar video generation
+netlify/functions/heygen-list.js      # lists HeyGen avatars & voices for the picker
 admin/narration.html                  # browser tool to build the narration manifest
 lesson-scripts.json                   # lesson narration scripts (source for the tool)
 narration-manifest.json               # (you generate this) maps lesson -> video URL
@@ -30,10 +31,9 @@ The app plays a short avatar video on any lesson that has one; lessons without a
 video just show text. To create the videos:
 
 1. Set `HEYGEN_API_KEY` in Netlify and redeploy.
-2. In HeyGen, pick a friendly stock avatar; copy its **avatar ID** and a **voice ID**.
-   (Don't use a real person's likeness without consent.)
-3. Open `https://your-site/admin/narration.html`, paste the two IDs, click
-   **Generate all narrations**. It renders each lesson and builds
+2. Open `https://your-site/admin/narration.html` and click **Load avatars & voices**.
+   Click an avatar to pick it (its voice auto-fills) — no IDs to copy by hand.
+3. Click **Generate all narrations**. It renders each lesson and builds
    `narration-manifest.json`.
 4. Download that file, commit it to the repo root, redeploy. Narrations now appear.
 

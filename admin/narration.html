@@ -5,20 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Narration Studio — Poise &amp; Purpose Academy</title>
 <style>
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:820px;margin:0 auto;padding:24px;color:#241B33;background:#FAF7F3;line-height:1.5}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:860px;margin:0 auto;padding:24px;color:#241B33;background:#FAF7F3;line-height:1.5}
   h1{font-size:1.5rem;margin:0 0 4px}
   .mut{color:#6B6472;font-size:.9rem}
   fieldset{border:1px solid #E9E1D5;border-radius:12px;padding:16px;margin:16px 0;background:#fff}
+  legend{font-weight:800;padding:0 6px}
   label{display:block;font-weight:700;font-size:.82rem;margin:10px 0 4px}
-  input,textarea{width:100%;padding:10px 12px;border:1px solid #E9E1D5;border-radius:8px;font:inherit;box-sizing:border-box}
-  textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:.82rem}
+  input,textarea,select{width:100%;padding:10px 12px;border:1px solid #E9E1D5;border-radius:8px;font:inherit;box-sizing:border-box;background:#fff}
+  textarea{min-height:110px;font-family:ui-monospace,monospace;font-size:.8rem}
   button{background:#241B33;color:#fff;border:0;border-radius:999px;padding:11px 18px;font-weight:800;cursor:pointer;font-size:.95rem}
   button.alt{background:#B98A2E;color:#5A3E0A}
   button:disabled{opacity:.5;cursor:not-allowed}
   .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .log{background:#1E1B26;color:#E8E2F0;border-radius:10px;padding:12px;font-family:ui-monospace,monospace;font-size:.78rem;white-space:pre-wrap;max-height:280px;overflow:auto;margin-top:12px}
+  .log{background:#1E1B26;color:#E8E2F0;border-radius:10px;padding:12px;font-family:ui-monospace,monospace;font-size:.78rem;white-space:pre-wrap;max-height:260px;overflow:auto;margin-top:12px}
   .warn{background:#FBEFD9;border:1px solid #E8C878;border-radius:10px;padding:12px;font-size:.85rem;margin:12px 0}
   code{background:#EFE9DE;padding:1px 5px;border-radius:5px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;max-height:340px;overflow:auto;margin-top:10px;padding:2px}
+  .av{border:2px solid #E9E1D5;border-radius:12px;padding:8px;cursor:pointer;text-align:center;background:#fff;transition:border-color .15s}
+  .av:hover{border-color:#B98A2E}
+  .av.sel{border-color:#241B33;box-shadow:0 0 0 3px #E8C878}
+  .av img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;background:#EFE9DE}
+  .av .nm{font-size:.72rem;font-weight:700;margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .av .pr{font-size:.6rem;color:#B98A2E;font-weight:800}
+  .pill{display:inline-block;background:#EFE9DE;border-radius:999px;padding:2px 9px;font-size:.75rem;font-weight:700}
 </style>
 </head>
 <body>
@@ -26,32 +35,45 @@
 <p class="mut">Generate HeyGen avatar videos for each lesson and produce <code>narration-manifest.json</code> for the app. Runs in your browser; the HeyGen key stays in the Netlify function.</p>
 
 <div class="warn">
-  <strong>Before you start:</strong> set <code>HEYGEN_API_KEY</code> in your Netlify environment variables and redeploy.
-  Pick a friendly stock avatar in HeyGen and copy its <em>avatar ID</em> and a <em>voice ID</em>.
-  Do not use a real person's likeness without their consent.
+  <strong>Before you start:</strong> set <code>HEYGEN_API_KEY</code> in Netlify and redeploy.
+  Then click <em>Load avatars &amp; voices</em> below and pick one — no IDs to copy by hand.
+  Don't use a real person's likeness without their consent.
 </div>
 
 <fieldset>
-  <label>HeyGen avatar ID</label>
-  <input id="avatarId" placeholder="e.g. Daisy-inskirt-20220818" />
-  <label>HeyGen voice ID</label>
-  <input id="voiceId" placeholder="e.g. 1bd001e7e50f421d891986aad5158bc8" />
-  <label>Scripts (JSON array of {key, script}) — loaded from lesson-scripts.json</label>
-  <textarea id="scripts"></textarea>
+  <legend>1 · Pick an avatar &amp; voice</legend>
+  <div class="row">
+    <button id="loadAv" class="alt">Load avatars &amp; voices</button>
+    <input id="search" placeholder="Filter avatars by name…" style="flex:1;min-width:180px" />
+    <span id="avStatus" class="mut"></span>
+  </div>
+  <div class="grid" id="avGrid"></div>
+  <label>Voice</label>
+  <select id="voiceSel"><option value="">— load first, or type an ID below —</option></select>
   <div class="row" style="margin-top:12px">
+    <div style="flex:1;min-width:200px"><label>Selected avatar ID</label><input id="avatarId" placeholder="click an avatar above" /></div>
+    <div style="flex:1;min-width:200px"><label>Selected voice ID</label><input id="voiceId" placeholder="auto-fills from avatar" /></div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>2 · Scripts</legend>
+  <label>JSON array of {key, script} — loaded from lesson-scripts.json</label>
+  <textarea id="scripts"></textarea>
+  <div class="row" style="margin-top:10px">
     <button id="load" class="alt">Reload lesson-scripts.json</button>
-    <button id="run">Generate all narrations</button>
     <span id="count" class="mut"></span>
   </div>
 </fieldset>
 
 <fieldset>
+  <legend>3 · Generate</legend>
   <div class="row">
-    <strong>Manifest output</strong>
+    <button id="run">Generate all narrations</button>
     <button id="dl" disabled>Download narration-manifest.json</button>
     <button id="copy" class="alt" disabled>Copy</button>
   </div>
-  <div class="mut" style="margin-top:6px">Commit this file to your repo root, then redeploy. The app plays a narration wherever a lesson key has a video.</div>
+  <div class="mut" style="margin-top:6px">Commit the downloaded file to your repo root, then redeploy. HeyGen URLs can expire — for a durable app, re-host the MP4s and update the URLs.</div>
   <div class="log" id="out">// manifest will appear here</div>
 </fieldset>
 
@@ -60,48 +82,79 @@
 <script>
 const $=id=>document.getElementById(id);
 const log=m=>{ $('log').textContent += "\n"+m; $('log').scrollTop=1e9; };
-const FN='/.netlify/functions/generate-narration';
-let manifest={lessons:{}};
+const GEN='/.netlify/functions/generate-narration';
+const LIST='/.netlify/functions/heygen-list';
+let manifest={lessons:{}}, AV=[], VO=[], selId='';
 
+/* ---- load lesson scripts ---- */
 async function loadScripts(){
   try{
     const r=await fetch('../lesson-scripts.json',{cache:'no-store'});
-    if(!r.ok) throw new Error('not found');
-    const arr=await r.json();
-    $('scripts').value=JSON.stringify(arr.map(x=>({key:x.key,script:x.script})),null,2);
-    $('count').textContent=arr.length+' scripts loaded';
+    if(!r.ok) throw 0;
+    const a=await r.json();
+    $('scripts').value=JSON.stringify(a.map(x=>({key:x.key,script:x.script})),null,2);
+    $('count').textContent=a.length+' scripts loaded';
   }catch(e){ log('Could not load ../lesson-scripts.json — paste scripts manually.'); }
 }
 $('load').onclick=loadScripts;
 
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+/* ---- load HeyGen avatars & voices ---- */
+$('loadAv').onclick=async ()=>{
+  $('avStatus').textContent='loading…'; $('loadAv').disabled=true;
+  try{
+    const r=await fetch(LIST); const d=await r.json();
+    if(d.error) throw new Error(d.error);
+    AV=d.avatars||[]; VO=d.voices||[];
+    VO.sort((a,b)=>(a.lang+a.name).localeCompare(b.lang+b.name));
+    $('voiceSel').innerHTML='<option value="">— choose a voice —</option>'+
+      VO.map(v=>`<option value="${v.id}">${(v.lang?('['+v.lang+'] '):'')}${v.name}${v.gender?(' · '+v.gender):''}</option>`).join('');
+    renderAvatars();
+    $('avStatus').textContent=AV.length+' avatars · '+VO.length+' voices';
+  }catch(e){ $('avStatus').textContent='error'; log('List failed: '+e.message+' (is HEYGEN_API_KEY set + redeployed?)'); }
+  $('loadAv').disabled=false;
+};
+function renderAvatars(){
+  const q=$('search').value.trim().toLowerCase();
+  const list=AV.filter(a=>!q||a.name.toLowerCase().includes(q)).slice(0,120);
+  $('avGrid').innerHTML=list.map(a=>`
+    <div class="av${a.id===selId?' sel':''}" data-id="${a.id}" data-voice="${a.default_voice_id||''}">
+      ${a.preview?`<img src="${a.preview}" loading="lazy" alt="">`:'<div style="aspect-ratio:1;background:#EFE9DE;border-radius:8px"></div>'}
+      <div class="nm">${a.name}</div>${a.premium?'<div class="pr">premium</div>':''}
+    </div>`).join('') || '<div class="mut">No matches.</div>';
+  [...$('avGrid').querySelectorAll('.av')].forEach(el=>el.onclick=()=>{
+    selId=el.dataset.id; $('avatarId').value=selId;
+    const dv=el.dataset.voice;
+    if(dv){ $('voiceId').value=dv; $('voiceSel').value=dv; }
+    renderAvatars();
+  });
+}
+$('search').oninput=()=>{ if(AV.length) renderAvatars(); };
+$('voiceSel').onchange=()=>{ if($('voiceSel').value) $('voiceId').value=$('voiceSel').value; };
 
+/* ---- generate ---- */
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function generateOne(item, avatarId, voiceId){
   log('→ '+item.key+': submitting…');
-  const cr=await fetch(FN,{method:'POST',headers:{'Content-Type':'application/json'},
+  const cr=await fetch(GEN,{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({script:item.script, avatarId, voiceId})});
   const cd=await cr.json();
   if(!cd.video_id){ log('  ✗ create failed: '+JSON.stringify(cd).slice(0,200)); return null; }
   log('  video_id '+cd.video_id+' — rendering…');
-  // poll up to ~6 minutes
   for(let i=0;i<45;i++){
     await sleep(8000);
-    const sr=await fetch(FN+'?video_id='+encodeURIComponent(cd.video_id));
-    const sd=await sr.json();
+    const sd=await (await fetch(GEN+'?video_id='+encodeURIComponent(cd.video_id))).json();
     if(sd.status==='completed'||sd.video_url){ log('  ✓ ready'); return sd.video_url; }
     if(sd.status==='failed'){ log('  ✗ render failed: '+(sd.error||'')); return null; }
     log('  … '+(sd.status||'processing'));
   }
-  log('  ✗ timed out waiting for render');
-  return null;
+  log('  ✗ timed out'); return null;
 }
-
 $('run').onclick=async ()=>{
   const avatarId=$('avatarId').value.trim(), voiceId=$('voiceId').value.trim();
-  if(!avatarId||!voiceId){ alert('Enter avatar ID and voice ID first.'); return; }
+  if(!avatarId||!voiceId){ alert('Pick an avatar and voice first.'); return; }
   let items; try{ items=JSON.parse($('scripts').value); }catch(e){ alert('Scripts must be valid JSON.'); return; }
   $('run').disabled=true; manifest={lessons:{}};
-  log('\nStarting '+items.length+' narrations (sequential, to respect concurrency limits)…');
+  log('\nStarting '+items.length+' narrations (sequential)…');
   for(const it of items){
     const url=await generateOne(it, avatarId, voiceId);
     if(url){ manifest.lessons[it.key]={video:url}; $('out').textContent=JSON.stringify(manifest,null,2); }
@@ -110,7 +163,6 @@ $('run').onclick=async ()=>{
   $('dl').disabled=$('copy').disabled=Object.keys(manifest.lessons).length===0;
   $('run').disabled=false;
 };
-
 $('dl').onclick=()=>{
   const blob=new Blob([JSON.stringify(manifest,null,2)],{type:'application/json'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='narration-manifest.json'; a.click();
