@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#241B33" />
+<title>Poise &amp; Purpose Academy</title>
+<meta name="description" content="An etiquette, character, confidence and life-skills academy for children and young adults." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   DESIGN SYSTEM
+   Brand: ink-plum + brass + sage. Signature motif = engraved
+   invitation / place-card. Each age band re-tints accent,
+   ground, radius and type scale so teens never see a "kid" UI.
+   ============================================================ */
+:root{
+  --ink:#241B33; --ink-2:#3A2E52;
+  --accent:#B98A2E; --accent-soft:#E8C878; --accent-ink:#5A3E0A;
+  --sage:#6E8E7A; --blush:#E7C9C0;
+  --paper:#FAF7F3; --card:#FFFFFF; --line:#E9E1D5;
+  --text:#2A2333; --muted:#6B6472; --good:#2E7D5B; --bad:#B5473A;
+  --r:16px; --r-lg:22px; --r-sm:10px;
+  --shadow:0 1px 2px rgba(36,27,51,.06), 0 10px 30px rgba(36,27,51,.07);
+  --shadow-lg:0 2px 6px rgba(36,27,51,.08), 0 24px 60px rgba(36,27,51,.14);
+  --display:'Fraunces',Georgia,serif;
+  --body:'Nunito Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --fs:1;               /* accessibility text-size multiplier */
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+/* Age-band themes ------------------------------------------------ */
+[data-band="k1"]{ --accent:#EA6A4C; --accent-soft:#FBC9B7; --accent-ink:#8A2E17; --paper:#FFF8EC; --sage:#5FAF8C; --r:26px; --r-lg:32px; --r-sm:16px; }
+[data-band="k2"]{ --accent:#1E9E93; --accent-soft:#B3E6DF; --accent-ink:#0C4A44; --paper:#F3FAF8; --sage:#4FA38F; --r:22px; --r-lg:28px; --r-sm:14px; }
+[data-band="t1"]{ --accent:#5C57C9; --accent-soft:#CFCDF4; --accent-ink:#2C2879; --paper:#F6F5FC; --r:18px; --r-lg:24px; --r-sm:12px; }
+[data-band="t2"]{ --accent:#B98A2E; --accent-soft:#E8C878; --accent-ink:#5A3E0A; --paper:#FAF7F3; --r:14px; --r-lg:20px; --r-sm:10px; }
+[data-band="ya"]{ --ink:#1E1B26; --accent:#A9853B; --accent-soft:#DFC48A; --accent-ink:#4A360F; --paper:#F7F6F3; --card:#FFFFFF; --r:12px; --r-lg:16px; --r-sm:8px; }
+/* High contrast + dyslexia-friendly toggles --------------------- */
+[data-contrast="high"]{ --paper:#ffffff; --text:#000; --muted:#333; --line:#000; --card:#fff; --shadow:0 0 0 2px #000; --shadow-lg:0 0 0 3px #000; }
+[data-contrast="high"] .btn{ border:2px solid #000 !important; }
+[data-dys="on"]{ --body:'Nunito Sans',system-ui,sans-serif; letter-spacing:.02em; word-spacing:.08em; line-height:1.85; }
+[data-dys="on"] p, [data-dys="on"] li{ max-width:60ch; }
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family:var(--body); color:var(--text); background:var(--paper);
+  font-size:calc(16px * var(--fs)); line-height:1.55;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  transition:background .4s var(--ease);
+}
+@media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; } }
+h1,h2,h3,h4{ font-family:var(--display); font-weight:600; color:var(--ink); line-height:1.12; margin:0 0 .35em; letter-spacing:-.01em; }
+h1{ font-size:clamp(1.9rem,4.5vw,3rem); }
+h2{ font-size:clamp(1.4rem,3vw,2rem); }
+h3{ font-size:1.2rem; }
+p{ margin:0 0 1em; }
+a{ color:var(--accent-ink); }
+button{ font-family:inherit; }
+:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; border-radius:6px; }
+.sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+
+/* layout shells -------------------------------------------------- */
+.wrap{ max-width:1040px; margin:0 auto; padding:0 20px; }
+.screen{ min-height:100vh; padding-bottom:96px; }
+.stack{ display:flex; flex-direction:column; gap:16px; }
+.row{ display:flex; gap:12px; align-items:center; }
+.between{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.grid{ display:grid; gap:16px; }
+.eyebrow{ font-family:var(--body); font-weight:800; text-transform:uppercase; letter-spacing:.16em; font-size:.72rem; color:var(--accent-ink); }
+
+/* buttons -------------------------------------------------------- */
+.btn{ appearance:none; border:1px solid transparent; background:var(--ink); color:#fff; font-weight:800;
+  padding:13px 20px; border-radius:999px; cursor:pointer; font-size:.98rem; transition:transform .15s var(--ease), filter .15s, background .2s; display:inline-flex; align-items:center; gap:9px; }
+.btn:hover{ transform:translateY(-1px); filter:brightness(1.08); }
+.btn:active{ transform:translateY(0); }
+.btn.accent{ background:var(--accent); color:var(--accent-ink); }
+.btn.ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+.btn.soft{ background:var(--accent-soft); color:var(--accent-ink); }
+.btn.block{ width:100%; justify-content:center; }
+.btn.sm{ padding:9px 15px; font-size:.86rem; }
+.btn:disabled{ opacity:.45; cursor:not-allowed; transform:none; }
+
+/* cards ---------------------------------------------------------- */
+.card{ background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); }
+.pad{ padding:22px; }
+.pad-lg{ padding:30px; }
+
+/* place-card motif ---------------------------------------------- */
+.placecard{ position:relative; background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:20px 20px 20px 22px; box-shadow:var(--shadow); overflow:hidden; text-align:left;
+  cursor:pointer; transition:transform .2s var(--ease), box-shadow .2s; width:100%; color:inherit; font:inherit; }
+.placecard::before{ content:""; position:absolute; inset:6px; border:1px solid var(--accent-soft); border-radius:calc(var(--r) - 6px); pointer-events:none; opacity:.6; }
+.placecard:hover{ transform:translateY(-3px); box-shadow:var(--shadow-lg); }
+.placecard .seal{ position:absolute; top:14px; right:14px; }
+
+/* wax-seal progress medallion ----------------------------------- */
+.medallion{ --sz:46px; width:var(--sz); height:var(--sz); position:relative; display:grid; place-items:center; }
+.medallion svg{ transform:rotate(-90deg); }
+.medallion .pct{ position:absolute; font-family:var(--body); font-weight:900; font-size:.72rem; color:var(--ink); }
+
+/* pills / chips -------------------------------------------------- */
+.chip{ display:inline-flex; align-items:center; gap:6px; background:var(--accent-soft); color:var(--accent-ink);
+  padding:4px 11px; border-radius:999px; font-size:.76rem; font-weight:800; }
+.chip.line{ background:transparent; border:1px solid var(--line); color:var(--muted); }
+
+/* top bar -------------------------------------------------------- */
+.topbar{ position:sticky; top:0; z-index:40; background:color-mix(in srgb,var(--paper) 88%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+.brandmark{ display:flex; align-items:center; gap:11px; font-family:var(--display); font-weight:600; color:var(--ink); font-size:1.05rem; }
+.brandmark .glyph{ width:34px; height:34px; border-radius:10px; background:var(--ink); color:var(--accent-soft); display:grid; place-items:center; font-weight:700; flex:none; }
+[data-band="k1"] .brandmark .glyph,[data-band="k2"] .brandmark .glyph{ border-radius:50%; }
+
+/* bottom nav (mobile-first) ------------------------------------- */
+.tabbar{ position:fixed; left:0; right:0; bottom:0; z-index:50; background:color-mix(in srgb,var(--card) 96%, transparent);
+  backdrop-filter:blur(12px); border-top:1px solid var(--line); display:flex; padding:8px 6px calc(8px + env(safe-area-inset-bottom)); }
+.tabbar button{ flex:1; background:none; border:0; padding:8px 4px; display:flex; flex-direction:column; align-items:center; gap:3px;
+  color:var(--muted); font-weight:800; font-size:.66rem; cursor:pointer; border-radius:12px; }
+.tabbar button[aria-current="true"]{ color:var(--accent-ink); }
+.tabbar button svg{ width:22px; height:22px; }
+
+/* progress bar --------------------------------------------------- */
+.bar{ height:9px; border-radius:999px; background:var(--line); overflow:hidden; }
+.bar > i{ display:block; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-soft)); border-radius:999px; transition:width .5s var(--ease); }
+
+/* inputs --------------------------------------------------------- */
+label.f{ display:block; font-weight:800; font-size:.82rem; margin-bottom:6px; color:var(--ink); }
+input,textarea,select{ font-family:inherit; font-size:1rem; width:100%; padding:12px 14px; border:1px solid var(--line);
+  border-radius:var(--r-sm); background:var(--card); color:var(--text); }
+input:focus,textarea:focus,select:focus{ outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+textarea{ min-height:96px; resize:vertical; }
+
+/* option buttons (quizzes / choose-response) -------------------- */
+.opt{ text-align:left; width:100%; background:var(--card); border:1.5px solid var(--line); border-radius:var(--r-sm);
+  padding:14px 16px; cursor:pointer; font:inherit; color:var(--text); transition:border-color .15s, background .15s; margin-bottom:10px; display:block; }
+.opt:hover{ border-color:var(--accent); }
+.opt.correct{ border-color:var(--good); background:color-mix(in srgb,var(--good) 10%, var(--card)); }
+.opt.wrong{ border-color:var(--bad); background:color-mix(in srgb,var(--bad) 9%, var(--card)); }
+.opt .fb{ display:block; margin-top:8px; font-size:.86rem; color:var(--muted); }
+
+/* toast ---------------------------------------------------------- */
+.toast{ position:fixed; left:50%; bottom:88px; transform:translateX(-50%) translateY(20px); z-index:80;
+  background:var(--ink); color:#fff; padding:12px 18px; border-radius:999px; font-weight:800; box-shadow:var(--shadow-lg);
+  opacity:0; pointer-events:none; transition:opacity .3s, transform .3s var(--ease); max-width:90vw; }
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* modal ---------------------------------------------------------- */
+.scrim{ position:fixed; inset:0; z-index:70; background:rgba(24,18,34,.5); display:grid; place-items:center; padding:18px; }
+.modal{ background:var(--card); border-radius:var(--r-lg); max-width:520px; width:100%; box-shadow:var(--shadow-lg); max-height:88vh; overflow:auto; }
+
+/* dining table game --------------------------------------------- */
+.tablewrap{ display:grid; grid-template-columns:1fr; gap:18px; }
+@media(min-width:720px){ .tablewrap{ grid-template-columns:1.3fr .9fr; } }
+.placemat{ position:relative; background:radial-gradient(circle at 50% 45%, #fff, var(--accent-soft) 240%); border:2px dashed var(--accent);
+  border-radius:20px; aspect-ratio:16/11; }
+.slot{ position:absolute; transform:translate(-50%,-50%); width:15%; aspect-ratio:1; border-radius:12px;
+  border:2px dashed color-mix(in srgb,var(--ink) 30%, transparent); display:grid; place-items:center; font-size:.62rem; color:var(--muted); text-align:center; }
+.slot.filled{ border-style:solid; border-color:var(--good); }
+.slot.round{ border-radius:50%; }
+.piece{ font-size:clamp(1.4rem,4vw,2rem); line-height:1; user-select:none; }
+.tray{ display:flex; flex-wrap:wrap; gap:10px; }
+.token{ background:var(--card); border:1.5px solid var(--line); border-radius:14px; padding:10px 12px; cursor:grab;
+  display:flex; align-items:center; gap:8px; font-weight:800; font-size:.82rem; touch-action:none; }
+.token[aria-grabbed="true"]{ border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+.token.used{ opacity:.35; }
+
+/* AI coach chat -------------------------------------------------- */
+.chat{ display:flex; flex-direction:column; gap:12px; }
+.bubble{ padding:12px 15px; border-radius:16px; max-width:85%; line-height:1.5; }
+.bubble.me{ align-self:flex-end; background:var(--ink); color:#fff; border-bottom-right-radius:5px; }
+.bubble.ai{ align-self:flex-start; background:var(--card); border:1px solid var(--line); border-bottom-left-radius:5px; }
+.bubble.ai .safe{ margin-top:8px; font-size:.78rem; color:var(--accent-ink); font-weight:800; }
+.suggests{ display:flex; flex-wrap:wrap; gap:8px; }
+.suggests button{ background:var(--accent-soft); color:var(--accent-ink); border:0; border-radius:999px; padding:8px 13px; font-weight:800; font-size:.8rem; cursor:pointer; }
+
+/* certificate ---------------------------------------------------- */
+.cert{ background:var(--card); border:2px solid var(--accent); border-radius:14px; padding:34px; text-align:center; position:relative; }
+.cert::after{ content:""; position:absolute; inset:10px; border:1px solid var(--accent-soft); border-radius:8px; pointer-events:none; }
+.cert h2{ font-size:2rem; }
+.cert .name{ font-family:var(--display); font-size:2.3rem; color:var(--accent-ink); border-bottom:2px solid var(--line); display:inline-block; padding:0 24px 6px; margin:8px 0 14px; }
+
+/* accessibility fab --------------------------------------------- */
+.a11y-fab{ position:fixed; right:14px; bottom:96px; z-index:60; width:48px; height:48px; border-radius:50%;
+  background:var(--ink); color:#fff; border:0; cursor:pointer; box-shadow:var(--shadow-lg); font-size:1.2rem; }
+
+.hidden{ display:none !important; }
+.center{ text-align:center; }
+.mut{ color:var(--muted); }
+.sm{ font-size:.85rem; }
+.mt{ margin-top:14px; } .mt-lg{ margin-top:26px; }
+hr.rule{ border:0; border-top:1px solid var(--line); margin:22px 0; }
+ul.tidy{ padding-left:18px; } ul.tidy li{ margin-bottom:6px; }
+</style>
+</head>
+<body>
+<div id="app" aria-live="polite"></div>
+<div id="toast" class="toast" role="status"></div>
+<button class="a11y-fab" id="a11yBtn" aria-label="Accessibility options" title="Accessibility options">&#9737;</button>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script>
+/* ================================================================
+   POISE & PURPOSE ACADEMY  —  single-file MVP
+   Storage: localStorage (browser-only). No backend required to run.
+   AI Coach: calls /.netlify/functions/etiquette-coach when deployed,
+   with a built-in safe fallback so it also works offline.
+   ================================================================ */
+
+/* ---------- tiny helpers ---------- */
+const $ = (s,r=document)=>r.querySelector(s);
+const el = (t,a={},...k)=>{const n=document.createElement(t);for(const[p,v]of Object.entries(a)){if(p==='class')n.className=v;else if(p==='html')n.innerHTML=v;else if(p.startsWith('on'))n.addEventListener(p.slice(2),v);else if(v!==false&&v!=null)n.setAttribute(p,v);}for(const c of k.flat()){if(c!=null)n.append(c.nodeType?c:document.createTextNode(c));}return n;};
+const BANDS = {k1:'Ages 5-7', k2:'Ages 8-10', t1:'Ages 11-13', t2:'Ages 14-17', ya:'Ages 18-21'};
+const bandGroup = b => ({k1:'young',k2:'young',t1:'mid',t2:'old',ya:'old'}[b]||'mid');
+const today = ()=> new Date().toISOString().slice(0,10);
+const uid = ()=> Math.random().toString(36).slice(2,9);
+
+/* ================================================================
+   CURRICULUM  (seed set - data-driven so lessons expand cleanly)
+   ================================================================ */
+const MODULES = [
+ {id:'respect', title:'Respect & Character', emoji:'\u{1F49B}', blurb:'The heart of good manners: kindness, honesty and self-control.'},
+ {id:'greet',   title:'Greetings & Introductions', emoji:'\u{1F91D}', blurb:'Meet people, use names and titles, and make a warm first impression.'},
+ {id:'convo',   title:'Conversation Skills', emoji:'\u{1F4AC}', blurb:'Listen well, take turns, and know what to say (and what to skip).'},
+ {id:'polite',  title:'Polite Language', emoji:'\u{1F64F}', blurb:'The words that show respect - and how to fix rude ones.'},
+ {id:'dining',  title:'Dining & Table Manners', emoji:'\u{1F37D}\uFE0F', blurb:'From the family table to a formal dinner. Includes the table-setting game.'},
+ {id:'digital', title:'Digital Life & Safety', emoji:'\u{1F4F1}', blurb:'Kind texting, group chats, privacy, and staying safe online.'},
+ {id:'confidence', title:'Confidence & Body Language', emoji:'\u2728', blurb:'Stand tall, speak clearly, and handle nerves with poise.'},
+ {id:'host',    title:'Gracious Guest & Host', emoji:'\u{1F388}', blurb:'Be the guest people love to invite - and the host who makes everyone comfortable.'},
+ {id:'thanks',  title:'Gifts & Thank-You Notes', emoji:'\u2709\uFE0F', blurb:'Give, receive, and say thank you with genuine warmth.'},
+ {id:'pro',     title:'Young Professional', emoji:'\u{1F4BC}', blurb:'Interviews, email, handshakes and workplace respect.', bands:['t2','ya']},
+];
+
+const LESSONS = [
+ {id:'respect-1', m:'respect', title:'Respect Starts With You', mins:8, obj:'Understand that respecting others begins with self-respect and kindness.',
+  vocab:[['Respect','Treating people, and yourself, as if they matter.'],['Empathy','Imagining how someone else feels.']],
+  teach:{young:'Respect means being kind, using gentle words, and caring how others feel. When you are kind to yourself too - telling yourself "I can try" - it is easier to be kind to others.',
+         mid:'Respect is treating people as though they matter, even when you disagree. It starts with how you treat yourself: people who value themselves find it easier to value others.',
+         old:'Respect is the baseline of every relationship - recognizing the dignity of the person in front of you regardless of status, mood, or whether they can do anything for you. Self-respect and empathy work together.'},
+  scenario:'A new student sits alone at lunch and looks nervous.',
+  choose:{prompt:'What is the most respectful move?', opts:[
+    {t:"Ignore them so you don't look uncool.", ok:false, fb:'Leaving someone out is the opposite of respect.'},
+    {t:'Invite them to sit with you and ask their name.', ok:true, fb:'Including someone who feels left out is respect in action.'},
+    {t:'Point them out to your friends.', ok:false, fb:'That can embarrass them.'}]},
+  quiz:[
+    {q:'Respect for others is easier when you also...', o:['respect yourself','win every argument','stay silent'], a:0, why:'Self-respect makes empathy easier.'},
+    {q:'Empathy means...', o:['getting your way','imagining how someone feels','being the loudest'], a:1, why:'Empathy is feeling with others.'}],
+  reflect:'Name one person you can treat with a little more kindness this week, and how.',
+  challenge:"Do one quiet act of kindness for someone who won't know it was you.",
+  ext:"Parent/teacher: Share a time someone's kindness changed your day."},
+
+ {id:'respect-2', m:'respect', title:'A Real Apology', mins:7, obj:'Apologize sincerely and repair a mistake.',
+  vocab:[['Sincere','Truly meaning what you say.'],['Repair','Making things a little better after a mistake.']],
+  teach:{young:'A good "sorry" has three parts: say what you did, say sorry, and ask how to make it better. "I broke your crayon. I\u2019m sorry. Can I get you a new one?"',
+         mid:'A sincere apology names the specific thing you did, takes responsibility without excuses, and offers to make it right. Skip "sorry you feel that way" - that blames the other person.',
+         old:'A real apology owns the impact, not just the intent: name the harm, drop the "but," and propose repair. Then change the behavior - repeated apologies without change stop meaning anything.'},
+  scenario:"You forgot to return a friend's book and they were counting on it.",
+  choose:{prompt:'Pick the sincere apology.', opts:[
+    {t:'"Sorry, but you never reminded me."', ok:false, fb:'The "but" shifts blame.'},
+    {t:"\"I'm sorry I forgot your book. I'll bring it tomorrow - can I make it up to you?\"", ok:true, fb:'Owns it and offers repair.'},
+    {t:'"It\u2019s just a book, relax."', ok:false, fb:'That dismisses their feelings.'}]},
+  quiz:[
+    {q:'A sincere apology avoids...', o:['naming what you did','excuses and "but"','offering to fix it'], a:1, why:'"But" undoes the apology.'},
+    {q:'After apologizing, the most important thing is to...', o:['repeat it many times','change the behavior','forget it happened'], a:1, why:'Change is what makes it real.'}],
+  reflect:'Is there a small "sorry" you still owe someone?',
+  challenge:"Give one sincere apology you've been putting off.",
+  ext:'Parent/teacher: Model an apology to your child when you get something wrong.'},
+
+ {id:'greet-1', m:'greet', title:'A Warm Hello', mins:8, obj:'Greet adults and peers with eye contact, a smile, and a pleasant tone.',
+  vocab:[['Eye contact','Looking kindly at someone while you speak.'],['Title','A respectful word before a name, like Mr. or Dr.']],
+  teach:{young:'When you say hello: look at the person, smile, and say their name. "Hi, Grandma!" A friendly hello tells people you are glad to see them.',
+         mid:'A strong greeting has four quick parts: eye contact, a smile, a warm "Hello," and the person\u2019s name or title. Use Mr., Ms., Mrs., Dr., Coach, Pastor or Professor for adults unless they invite you to use their first name.',
+         old:'First impressions form in seconds. Offer eye contact, a genuine smile, an open posture, and the person\u2019s name - using the correct title signals respect until they tell you otherwise.'},
+  scenario:"You arrive at a friend's house and their mother opens the door.",
+  choose:{prompt:'Best greeting?', opts:[
+    {t:'Look at your phone and mumble "hey".', ok:false, fb:'No eye contact reads as uninterested.'},
+    {t:'"Hi, Mrs. Lee - thanks for having me."', ok:true, fb:'Eye contact, title, warmth. Perfect.'},
+    {t:'Walk in without a word.', ok:false, fb:'Always greet the host.'}]},
+  quiz:[
+    {q:'Until an adult says otherwise, address them with...', o:['their first name','a title and last name','a nickname'], a:1, why:'Titles show respect.'},
+    {q:'A warm greeting usually includes...', o:['eye contact and a smile','looking at the floor','talking fast'], a:0, why:'Eye contact + smile = warmth.'}],
+  reflect:'Whose name do you want to remember to use more often?',
+  challenge:'Greet three adults today by name and title.',
+  ext:'Parent/teacher: Practice a doorway greeting role-play together.'},
+
+ {id:'greet-2', m:'greet', title:'Introducing Two People', mins:9, obj:'Introduce two people to each other, including forgetting a name gracefully.',
+  vocab:[['Introduce',"Help two people who don't know each other meet."]],
+  teach:{young:'To introduce friends, say both names and one fun thing: "Sam, this is Ava. Ava loves soccer too!"',
+         mid:'Introduce people by saying each name and adding a detail that gives them something to talk about. Traditionally you name the person you honor first (an elder or guest).',
+         old:'The classic rule: name the more senior or honored person first, then offer a shared thread so the conversation can start itself. Forgot a name? Own it lightly: "I\u2019m blanking - please, your name?" Nobody minds.'},
+  scenario:"You're with your grandmother and bump into your teammate.",
+  choose:{prompt:'Best introduction?', opts:[
+    {t:'Say nothing and hope they figure it out.', ok:false, fb:'Leaves everyone awkward.'},
+    {t:'"Grandma, this is my teammate Riley. Riley, this is my grandmother, Mrs. Carter."', ok:true, fb:'Names both, honors the elder first.'},
+    {t:'"You two know each other, right?"', ok:false, fb:"They don't - that's why you introduce them."}]},
+  quiz:[
+    {q:'A good introduction adds...', o:['a shared detail to talk about','a secret','a joke about them'], a:0, why:'A detail sparks conversation.'},
+    {q:'If you forget a name, you should...', o:['avoid them forever','admit it kindly and ask','make one up'], a:1, why:'Honesty is graceful here.'}],
+  reflect:'Who could you introduce to someone new this week?',
+  challenge:"Introduce two people who don't know each other.",
+  ext:'Parent/teacher: Let your child introduce you to their friends.'},
+
+ {id:'convo-1', m:'convo', title:'The Art of Listening', mins:9, obj:"Listen actively: don't interrupt, ask follow-ups, stay on topic.",
+  vocab:[['Active listening','Really paying attention and showing it.'],['Follow-up question','A question that builds on what someone said.']],
+  teach:{young:'Good listeners look at the talker, wait their turn, and ask a question back. If Maya says "I got a puppy!", you ask "What\u2019s its name?"',
+         mid:'Active listening means giving your attention, not interrupting, and asking follow-up questions that show you heard them. Let them finish before sharing your own story.',
+         old:'The best conversationalists listen more than they talk. Signal attention, avoid interrupting, and ask follow-ups that go deeper rather than redirecting to yourself. People remember how you made them feel.'},
+  scenario:'A friend is telling you about their weekend and you have a great story too.',
+  choose:{prompt:'Best move?', opts:[
+    {t:'Cut in with your story immediately.', ok:false, fb:'Interrupting says your story matters more.'},
+    {t:'Let them finish, ask a follow-up, then share.', ok:true, fb:'You honored them first.'},
+    {t:'Check your phone while they talk.', ok:false, fb:'That signals boredom.'}]},
+  quiz:[
+    {q:'A follow-up question shows...', o:['you were listening',"you're bored","you want to leave"], a:0, why:'Follow-ups prove you listened.'},
+    {q:'Active listening means you...', o:['interrupt often','give real attention','look away'], a:1, why:'Attention is the whole point.'}],
+  reflect:'Are you a talker or a listener? What could you improve?',
+  challenge:'In one chat today, ask two follow-up questions before sharing your own story.',
+  ext:'Parent/teacher: At dinner, everyone asks one follow-up before replying.'},
+
+ {id:'convo-2', m:'convo', title:'Reading the Room', mins:9, obj:'Notice social cues, avoid gossip and oversharing, disagree respectfully.',
+  vocab:[['Social cue','A hint (face, tone, body) about how someone feels.'],['Gossip','Talking about people behind their backs.']],
+  teach:{young:"Watch faces and voices. If someone looks sad, use a gentle voice. If a topic makes a friend uncomfortable, change it. And never say mean things about people who aren't there.",
+         mid:'Reading the room means noticing cues and adjusting. Skip gossip and oversharing. To disagree, attack the idea, not the person: "I see it differently..."',
+         old:'Emotional intelligence is a superpower: read tone, body language and timing before you speak. Avoid gossip - it always circles back. Disagree by separating the point from the person.'},
+  scenario:"Your group starts making fun of someone who isn't there.",
+  choose:{prompt:'Best response?', opts:[
+    {t:'Join in so you fit in.', ok:false, fb:'Gossip you join, you own.'},
+    {t:'Change the subject or say "Let\u2019s not - they\u2019re not here to explain."', ok:true, fb:'Kind and steady.'},
+    {t:'Record it to share later.', ok:false, fb:'That makes it worse and can spread.'}]},
+  quiz:[
+    {q:'To disagree respectfully, focus on...', o:['the person','the idea','winning'], a:1, why:'Critique ideas, not people.'},
+    {q:'A "social cue" might be...', o:['a bored expression','the weather','the time'], a:0, why:'Cues are signals from people.'}],
+  reflect:'When is a topic "too personal" to bring up?',
+  challenge:'Steer one conversation away from gossip this week.',
+  ext:'Parent/teacher: Discuss the difference between sharing news and gossip.'},
+
+ {id:'polite-1', m:'polite', title:'The Magic Words', mins:6, obj:'Use please, thank you, excuse me and more - and rewrite rude phrases.',
+  vocab:[['Courtesy','A small polite word or action.']],
+  teach:{young:'"Please" and "thank you" are magic - they make people want to help you. "Excuse me" clears a path politely. "May I?" asks instead of grabbing.',
+         mid:'Polite language turns demands into requests. "Give me that" becomes "Could I please have that?" These small words signal that you see the other person as a person.',
+         old:'Courtesy language is social lubricant: "please," "thank you," "excuse me," "would you mind," "no, thank you." It costs nothing and changes how people respond to you.'},
+  scenario:'You want the salt at dinner.',
+  choose:{prompt:'Best phrasing?', opts:[
+    {t:'"Give me the salt."', ok:false, fb:"That's a demand."},
+    {t:'"Could you please pass the salt? Thank you."', ok:true, fb:'A polite request.'},
+    {t:"Reach across everyone's plates.", ok:false, fb:'Ask instead of reaching.'}]},
+  quiz:[
+    {q:'"Excuse me" is used to...', o:['brag','politely get by or interrupt','end a call'], a:1, why:'It signals polite passage.'},
+    {q:'Turn "Give me that" polite:', o:['"Now."','"Could I please have that?"','"Hurry up."'], a:1, why:'A request, not a demand.'}],
+  reflect:'Which magic word do you forget most?',
+  challenge:'Catch yourself turning one demand into a polite request today.',
+  ext:'Parent/teacher: Play "rude to polite" - rewrite bossy phrases together.'},
+
+ {id:'dining-1', m:'dining', title:'Table Basics', mins:9, obj:'Master the core table manners of any shared meal.',
+  vocab:[['Napkin','Cloth or paper for your lap and clean-ups.'],['Portion','How much food you take.']],
+  teach:{young:'At the table: wash your hands, put your napkin on your lap, wait until everyone is served, and chew with your mouth closed. Say "please" and "thank you" for food.',
+         mid:"Core habits: wash up first, napkin in your lap, wait until everyone is served (or the host begins), take reasonable portions, chew with your mouth closed, and don't talk with food in your mouth. Ask for items to be passed rather than reaching.",
+         old:'Dining manners are quiet competence: napkin in lap, wait for the host, work utensils outside-in, keep elbows off the table while eating, pace yourself with others, and never reach - ask.'},
+  scenario:"A dish you've never seen is passed to you at a friend's dinner.",
+  choose:{prompt:'Best move?', opts:[
+    {t:'Say "ew, what is that?"', ok:false, fb:'That can hurt the host.'},
+    {t:'Take a small amount and try it politely.', ok:true, fb:'Gracious and open-minded.'},
+    {t:'Refuse loudly.', ok:false, fb:'A quiet "no, thank you" is enough if needed.'}]},
+  quiz:[
+    {q:'You should begin eating when...', o:['you sit down','everyone is served or the host starts',"you're hungry"], a:1, why:'Wait for the table.'},
+    {q:'To get something out of reach...', o:['stand and grab','ask someone to pass it','skip it forever'], a:1, why:"Ask, don't reach."}],
+  reflect:'Which table habit is hardest for you to remember?',
+  challenge:'Eat one meal using every rule from this lesson.',
+  ext:'Parent/teacher: Host a "practice dinner" with full manners.'},
+
+ {id:'dining-2', m:'dining', title:'Set the Table', mins:10, obj:'Place each item of a table setting correctly.', game:'table',
+  vocab:[['Place setting','Where each plate, utensil and glass goes.']],
+  teach:{young:"Everything has a home! Forks go on the left, knives and spoons on the right, your drink goes up and to the right. Let's try it in the game below.",
+         mid:'A basic setting: napkin and fork on the left; plate in the center; knife (blade facing the plate) and spoon on the right; water glass above the knife; bread plate upper left. Use utensils from the outside in as courses arrive.',
+         old:"Knowing a place setting means you're never lost at a formal table. Left: bread plate, napkin, forks. Center: the plate. Right: knife (blade in) and spoon. Above right: glassware. Work from the outside in with each course."},
+  scenario:"You're helping set the table for a family dinner.",
+  choose:{prompt:'Where does the fork go?', opts:[
+    {t:'On the right with the knife.', ok:false, fb:'Forks go on the left.'},
+    {t:'On the left of the plate.', ok:true, fb:'Correct!'},
+    {t:'On top of the plate.', ok:false, fb:"That's for the napkin sometimes, not the fork."}]},
+  quiz:[
+    {q:'The knife blade should face...', o:['away from the plate','toward the plate','straight up'], a:1, why:'Blade faces the plate.'},
+    {q:'Use utensils...', o:['inside-out','outside-in','any order'], a:1, why:'Outside-in with each course.'}],
+  reflect:'What surprised you about the correct setting?',
+  challenge:'Set the table correctly for one real meal.',
+  ext:'Parent/teacher: Set a formal place setting together and photograph it.'},
+
+ {id:'digital-1', m:'digital', title:'Kind on the Keyboard', mins:9, obj:'Text and post kindly; avoid cyberbullying; think before you send.',
+  vocab:[['Cyberbullying','Being cruel to someone online or by text.'],['Permanent','Hard or impossible to fully erase.']],
+  teach:{young:"Only type things you would say out loud to someone's face, with a grown-up watching. If a message would make someone sad, don't send it. Screens can save messages forever.",
+         mid:"Online, tone is invisible - a joke can read as an insult. Re-read before sending, don't pile on, and never forward embarrassing content about someone. Assume anything you post could be screenshotted and permanent.",
+         old:"Your digital footprint follows you into college and jobs. Write as though a screenshot is inevitable, because it is. Don't forward private content, don't join a pile-on, and remember: deleting rarely means gone."},
+  scenario:'A group chat starts mocking a classmate and someone tags you in.',
+  choose:{prompt:'Best response?', opts:[
+    {t:'Add a funny insult of your own.', ok:false, fb:"You'd become part of the bullying."},
+    {t:"Don't pile on; privately check on the classmate; tell a trusted adult if it escalates.", ok:true, fb:'Kind and safe.'},
+    {t:'Screenshot and share it wider.', ok:false, fb:'That spreads the harm.'}]},
+  quiz:[
+    {q:'Before sending a message, you should...', o:['send fast','re-read for tone','add more emojis'], a:1, why:'Tone is easy to misread.'},
+    {q:'Posts and texts are best treated as...', o:['temporary','permanent','private forever'], a:1, why:'Assume it can last.'}],
+  reflect:'Have you ever regretted a message? What would you change?',
+  challenge:'Pause and re-read every message before sending, for one full day.',
+  ext:"Parent/teacher: Review the family's texting-kindness rules together."},
+
+ {id:'digital-2', m:'digital', title:'Guard Your Privacy', mins:9, obj:'Protect passwords and private info; handle strangers and scams; ask permission before posting others.',
+  vocab:[['Private information',"Details a stranger shouldn't know (address, passwords, school)."],['Scam','A trick to steal money or information.']],
+  teach:{young:'Keep safe: never share your password, address, or school with people online. If a message feels weird or asks you to keep a secret from your grown-ups, tell a trusted adult right away.',
+         mid:"Never share passwords, your address, or your location publicly. Be suspicious of messages that create urgency or ask for money or info - that's how scams work. Ask permission before posting a photo of someone else. If anyone asks you to keep an online chat secret from your family, that's a red flag - tell a trusted adult.",
+         old:'Protect your credentials (unique passwords, two-factor), lock down location sharing, and treat urgent "act now" messages as scams until proven otherwise. Consent matters online too - ask before posting others. Anyone pressuring you toward secrecy from the people who care about you is a warning sign worth reporting.'},
+  scenario:"Someone you don't know messages you asking for your address and says \"don't tell your parents.\"",
+  choose:{prompt:'Best response?', opts:[
+    {t:'Send it - they seem nice.', ok:false, fb:'Never share private info with strangers.'},
+    {t:"Don't reply, don't share anything, and tell a trusted adult.", ok:true, fb:'Exactly right - secrecy requests are a red flag.'},
+    {t:'Keep chatting but hide it.', ok:false, fb:'Hiding it is what they want. Tell an adult.'}]},
+  quiz:[
+    {q:'A message that says "act now or lose your account" is likely a...', o:['gift','scam','friend'], a:1, why:'Urgency is a scam signal.'},
+    {q:'Before posting a photo of a friend, you should...', o:['ask their permission','tag everyone','crop it'], a:0, why:'Consent first.'}],
+  reflect:'What personal details should always stay private?',
+  challenge:'Check the privacy settings on one app with a trusted adult.',
+  ext:'Parent/teacher: Set up or review privacy settings together.'},
+
+ {id:'confidence-1', m:'confidence', title:'Stand Tall', mins:8, obj:'Use posture, eye contact and a clear voice to project calm confidence.',
+  vocab:[['Posture','How you hold your body.'],['Poise','Calm, graceful confidence.']],
+  teach:{young:'Confidence has a shape: shoulders back, head up, feet still, and a clear voice. Practice saying your name loud and proud!',
+         mid:'Confidence is partly physical: stand tall, plant your feet, make eye contact, and speak a little slower and clearer than feels natural. Managing a nervous habit starts with noticing it.',
+         old:'Poise is trained, not born. Rooted posture, steady eye contact, an unhurried voice, and open hands read as confidence - and doing them makes you feel calmer too. Before high-pressure moments, slow your breathing.'},
+  scenario:'You have to introduce yourself to a room of new people.',
+  choose:{prompt:'Best approach?', opts:[
+    {t:'Mumble quickly and look down.', ok:false, fb:'Hard to hear and reads as unsure.'},
+    {t:'Stand tall, make eye contact, and say your name clearly.', ok:true, fb:'Calm and confident.'},
+    {t:'Make a joke to deflect.', ok:false, fb:'Sometimes fine, but not a substitute for clarity.'}]},
+  quiz:[
+    {q:'Confident speaking is usually...', o:['fast and quiet','slower and clearer','a whisper'], a:1, why:'Slow + clear = confident.'},
+    {q:'Good posture includes...', o:['slumped shoulders','head up, shoulders back','looking down'], a:1, why:'Tall and open.'}],
+  reflect:"What is one nervous habit you'd like to manage?",
+  challenge:'Introduce yourself to someone new, standing tall.',
+  ext:'Parent/teacher: Record a 20-second "confident intro" and watch it back.'},
+
+ {id:'confidence-2', m:'confidence', title:'Compliments & Criticism', mins:8, obj:'Accept a compliment gracefully and receive criticism calmly.',
+  vocab:[['Gracious','Warm and polite, especially in tricky moments.'],['Feedback','Helpful information about how you did.']],
+  teach:{young:'When someone says something nice, just say "thank you!" with a smile. If a grown-up tells you a better way to do something, say "thanks, I\u2019ll try that."',
+         mid:'Accept a compliment with a simple "Thank you" - no arguing it away. Receive criticism by listening fully, resisting defensiveness, and asking a question if unsure.',
+         old:'A compliment deserves a clean "Thank you," not a deflection. Criticism is harder: separate the feedback from your worth, listen without rehearsing a rebuttal, and treat useful notes as a gift even when the delivery is clumsy.'},
+  scenario:'A coach corrects your technique in front of the team.',
+  choose:{prompt:'Best response?', opts:[
+    {t:'Argue that you were right.', ok:false, fb:'Defensiveness blocks learning.'},
+    {t:'"Thanks, Coach - let me try it that way."', ok:true, fb:'Composed and coachable.'},
+    {t:'Roll your eyes.', ok:false, fb:'Disrespectful and closes the door.'}]},
+  quiz:[
+    {q:'The best reply to a compliment is...', o:['"No, not really"','"Thank you"','silence'], a:1, why:'Accept it graciously.'},
+    {q:'When criticized, first...', o:['defend yourself','listen fully','walk away'], a:1, why:'Listen before reacting.'}],
+  reflect:'Do you find compliments or criticism harder to receive?',
+  challenge:'Accept the next compliment with a simple "thank you."',
+  ext:'Parent/teacher: Practice giving and receiving kind feedback.'},
+
+ {id:'host-1', m:'host', title:'The Gracious Guest', mins:8, obj:'Be a considerate guest: arrive on time, follow house rules, thank the host.',
+  vocab:[['Host','The person who invited you.'],['RSVP',"Letting the host know if you're coming."]],
+  teach:{young:'A good guest says "thank you for having me," follows the house rules, cleans up their mess, and doesn\u2019t stay too long. Bringing a small gift is a nice surprise!',
+         mid:'Great guests reply to the invitation (RSVP), arrive on time, follow the household\u2019s rules, keep phone use low, offer to help, thank the host warmly, and don\u2019t overstay. A small host gift is a classic kindness.',
+         old:"Being the guest people love to invite back: RSVP promptly, arrive on time, bring a small host gift, respect the home's rhythms and rules, offer to help, stay off your phone, and leave before you're asked to. A next-day thank-you seals it."},
+  scenario:"You're at a sleepover and it's getting late; the family seems tired.",
+  choose:{prompt:'Best move?', opts:[
+    {t:"Keep the noise up - you're having fun.", ok:false, fb:'Read the room; respect their evening.'},
+    {t:'Wind down, help tidy, and thank them.', ok:true, fb:'A considerate guest.'},
+    {t:'Ask to stay an extra day.', ok:false, fb:"Don't overstay unless invited."}]},
+  quiz:[
+    {q:'"RSVP" means...', o:['bring a friend',"tell the host if you're coming",'arrive late'], a:1, why:'It confirms attendance.'},
+    {q:'A gracious guest...', o:['overstays','offers to help and thanks the host','ignores house rules'], a:1, why:'Helpful and grateful.'}],
+  reflect:'What makes you a guest people want to invite back?',
+  challenge:'Bring a small thank-you to your next host.',
+  ext:'Parent/teacher: Plan a visit and role-play arrival and goodbye.'},
+
+ {id:'host-2', m:'host', title:'The Thoughtful Host', mins:9, obj:'Welcome guests, include everyone, and handle needs kindly.',
+  vocab:[['Hospitality','Making guests feel welcome and comfortable.']],
+  teach:{young:'When friends come over, greet them at the door, offer a snack or drink, and make sure no one is left out of the game. A good host shares!',
+         mid:'A thoughtful host greets guests warmly, offers refreshments, makes introductions so no one is stranded, includes everyone in the activity, and checks for needs like food allergies.',
+         old:"Hosting is stage-managing other people's comfort: greet at the door, take coats, introduce guests to each other, offer refreshments, quietly accommodate dietary needs, and keep an eye out for anyone drifting to the edges."},
+  scenario:"One guest at your party doesn't know anyone else.",
+  choose:{prompt:'Best host move?', opts:[
+    {t:'Let them figure it out.', ok:false, fb:'They may feel stranded.'},
+    {t:'Introduce them to others and pull them into the group.', ok:true, fb:"That's hospitality."},
+    {t:'Stay only with your close friends.', ok:false, fb:'Hosts spread their attention.'}]},
+  quiz:[
+    {q:'A thoughtful host checks for...', o:["who's coolest",'dietary needs and comfort','the most gifts'], a:1, why:'Comfort of every guest.'},
+    {q:'If a guest is alone, you should...', o:['introduce them around','ignore it','ask them to leave'], a:0, why:'Include everyone.'}],
+  reflect:'How do you make a new person feel welcome?',
+  challenge:'Next gathering, make sure one person on the edge feels included.',
+  ext:'Parent/teacher: Plan a small gathering your child helps host.'},
+
+ {id:'thanks-1', m:'thanks', title:'Receiving a Gift', mins:7, obj:"Receive any gift graciously - even one you don't love.",
+  vocab:[['Gracious','Warm and thankful.']],
+  teach:{young:'When you open a gift, smile and say "thank you!" - even if it\u2019s not what you wanted. The person was being kind to you, and that\u2019s what matters.',
+         mid:'Receiving well is a skill: make eye contact, say a specific thank-you ("Thank you - I love the color"), and never comment on cost or disappointment. The giver\u2019s effort is the real gift.',
+         old:"A gift is an act of thought, not a transaction. Receive it warmly, find something genuine to appreciate, and never let price or preference show. If it truly won't work, a private, kind conversation later beats a visible reaction in the moment."},
+  scenario:"A relative gives you a sweater you don't like.",
+  choose:{prompt:'Best response?', opts:[
+    {t:'"I\u2019ll never wear this."', ok:false, fb:'That hurts the giver.'},
+    {t:'"Thank you so much - that was really thoughtful."', ok:true, fb:'Gracious and kind.'},
+    {t:'Ask for the receipt right away.', ok:false, fb:'Not in the moment.'}]},
+  quiz:[
+    {q:'When you dislike a gift, you should...', o:['say so honestly','thank them warmly anyway','give it back'], a:1, why:'Appreciate the thought.'},
+    {q:"You should never comment on a gift's...", o:['color','cost','shape'], a:1, why:'Cost is off-limits.'}],
+  reflect:'Why does the giver\u2019s effort matter more than the gift?',
+  challenge:'Thank someone specifically for something small they did.',
+  ext:'Parent/teacher: Role-play opening a "surprise" gift graciously.'},
+
+ {id:'thanks-2', m:'thanks', title:'The Thank-You Note', mins:9, obj:'Write a warm, specific thank-you note.', builder:true,
+  vocab:[['Specific',"Naming the exact thing you're grateful for."]],
+  teach:{young:'A thank-you note has three parts: say thank you, say what you liked, and say something warm. "Dear Aunt Jo, thank you for the paints! I painted a rainbow. Love, me."',
+         mid:'A great note names the gift or act specifically, says how you\u2019ll use or enjoy it, and closes warmly. Handwritten notes stand out; a text is fine for casual thanks. Send it within a few days.',
+         old:'The thank-you note is a small, disproportionately powerful habit - in life and in careers. Structure: greet, thank them specifically, mention the impact, and close warmly. Handwritten for big gestures; prompt either way.'},
+  scenario:'Your grandmother sent a gift for your birthday.',
+  choose:{prompt:'Best note opening?', opts:[
+    {t:'"Thanks for the stuff."', ok:false, fb:'Too vague.'},
+    {t:"\"Dear Grandma, thank you for the art set - I've already started drawing with it!\"", ok:true, fb:'Specific and warm.'},
+    {t:'"Got your gift. Bye."', ok:false, fb:'No warmth.'}]},
+  quiz:[
+    {q:'A strong thank-you note is...', o:['vague','specific','a single word'], a:1, why:'Specific is memorable.'},
+    {q:'You should send it...', o:['months later','within a few days','never'], a:1, why:'Promptness matters.'}],
+  reflect:'Who deserves a thank-you note from you right now?',
+  challenge:'Write and send one real thank-you note this week.',
+  ext:'Parent/teacher: Keep note cards handy and write one together.'},
+
+ {id:'pro-1', m:'pro', title:'The Professional Handshake & Intro', mins:9, obj:'Introduce yourself professionally, in person and by email.', bands:['t2','ya'],
+  vocab:[['Networking','Building respectful professional relationships.']],
+  teach:{old:'In professional settings, lead with a firm (not crushing) handshake, eye contact, a smile, and a clear "Hi, I\u2019m ___." In email, use a real subject line, a proper greeting ("Dear Ms. Ortiz,"), concise body, and a sign-off with your name. Proofread before you send - sloppy email undercuts a strong resume.'},
+  scenario:"You're emailing a manager to ask about a summer role.",
+  choose:{prompt:'Best email opening?', opts:[
+    {t:'"hey do u have jobs"', ok:false, fb:'Too casual, no subject or name.'},
+    {t:"\"Dear Ms. Ortiz, I'm a junior interested in your summer program - may I ask a few questions?\"", ok:true, fb:'Professional and clear.'},
+    {t:'"URGENT!!! reply now"', ok:false, fb:'False urgency reads as rude.'}]},
+  quiz:[
+    {q:'A professional email should have...', o:['no subject','a clear subject and greeting','all caps'], a:1, why:'Structure signals respect.'},
+    {q:'A good handshake is...', o:['crushing','firm, brief, with eye contact','limp'], a:1, why:'Firm and warm.'}],
+  reflect:'What impression do you want to make on a first professional contact?',
+  challenge:"Draft a professional intro email (don't send yet) and proofread it twice.",
+  ext:'Parent/teacher: Practice a mock interview handshake and intro.'},
+
+ {id:'pro-2', m:'pro', title:'Interview Poise', mins:10, obj:'Prepare for and carry yourself well in an interview.', bands:['t2','ya'],
+  vocab:[['Punctuality','Being on time - ideally a little early.']],
+  teach:{old:"Interviews reward preparation and composure. Research the place, dress one notch above the everyday norm, arrive 5-10 minutes early, silence your phone, greet everyone warmly, and answer with specific examples. It's fine to pause before answering. Follow up within a day with a short thank-you note - most people don't, and it's remembered."},
+  scenario:'You arrive 15 minutes early to an interview.',
+  choose:{prompt:'Best use of that time?', opts:[
+    {t:'Scroll your phone in the lobby.', ok:false, fb:'Silence it and stay present.'},
+    {t:'Be polite to the receptionist and review your notes calmly.', ok:true, fb:"Everyone's impression counts."},
+    {t:'Walk in immediately and interrupt.', ok:false, fb:'Wait to be received.'}]},
+  quiz:[
+    {q:'For an interview, aim to arrive...', o:['exactly on time','5-10 minutes early','fashionably late'], a:1, why:'A little early shows respect.'},
+    {q:'After an interview, you should...', o:['do nothing','send a thank-you note','call five times'], a:1, why:'A prompt thank-you stands out.'}],
+  reflect:'What would help you feel calm walking into an interview?',
+  challenge:'Prepare two specific stories about yourself you could share in an interview.',
+  ext:'Parent/teacher: Run a 10-minute mock interview and give one kind note.'},
+];
+
+const PATHS = [
+ {id:'character',   name:'Character Foundations', mods:['respect'], cert:'Character Foundations'},
+ {id:'communicator',name:'Confident Communicator', mods:['greet','convo','polite'], cert:'Confident Communicator'},
+ {id:'dining',      name:'Dining with Confidence', mods:['dining'], cert:'Dining Etiquette'},
+ {id:'digital',     name:'Digital Citizen', mods:['digital'], cert:'Digital Citizenship'},
+ {id:'poise',       name:'Poise & Presence', mods:['confidence'], cert:'Poise & Presence'},
+ {id:'hostpath',    name:'Gracious Guest & Host', mods:['host','thanks'], cert:'Gracious Guest & Host'},
+ {id:'career',      name:'College & Career Ready', mods:['pro'], cert:'Professional Readiness'},
+];
+
+const BADGES = [
+ {id:'first',  emoji:'\u{1F331}', name:'First Steps', desc:'Finish your first lesson.'},
+ {id:'kind',   emoji:'\u{1F49B}', name:'Kind Heart', desc:'Complete Respect & Character.'},
+ {id:'table',  emoji:'\u{1F37D}\uFE0F', name:'Table Master', desc:'Set the table perfectly.'},
+ {id:'digital',emoji:'\u{1F6E1}\uFE0F', name:'Digital Citizen', desc:'Finish Digital Life & Safety.'},
+ {id:'streak3',emoji:'\u{1F525}', name:'On a Roll', desc:'A 3-day streak.'},
+ {id:'streak7',emoji:'\u2B50', name:'Steady Star', desc:'A 7-day streak.'},
+ {id:'coach',  emoji:'\u{1F9ED}', name:'Curious Coach', desc:'Ask the coach 3 questions.'},
+ {id:'ambassador',emoji:'\u{1F3C5}', name:'Etiquette Ambassador', desc:'Complete any full learning path.'},
+];
+
+/* ================================================================ STATE ================================================================ */
+const KEY='ppa_state_v1';
+let S = load();
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || fresh(); }catch(e){ return fresh(); } }
+function fresh(){ return { org:null, activeId:null, profiles:{}, a11y:{fs:1,contrast:'normal',dys:'off'}, parentPin:null, coachCount:0 }; }
+function save(){ localStorage.setItem(KEY, JSON.stringify(S)); }
+const P = ()=> S.profiles[S.activeId];
+
+const modLessons = (mid,band)=> LESSONS.filter(l=>l.m===mid && (!l.bands || l.bands.includes(band)));
+const modAvailable = (mid,band)=>{ const m=MODULES.find(x=>x.id===mid); return (!m.bands||m.bands.includes(band)); };
+function modProgress(mid,band){ const ls=modLessons(mid,band); if(!ls.length) return {done:0,total:0,pct:0}; const done=ls.filter(l=>P().lessons[l.id]?.done).length; return {done,total:ls.length,pct:Math.round(done/ls.length*100)}; }
+function pathProgress(pid,band){ const p=PATHS.find(x=>x.id===pid); let d=0,t=0; p.mods.forEach(mid=>{ if(modAvailable(mid,band)){const mp=modProgress(mid,band); d+=mp.done; t+=mp.total;} }); return {done:d,total:t,pct:t?Math.round(d/t*100):0, complete:t>0&&d===t}; }
+const teachFor=(l,band)=> l.teach[bandGroup(band)] || l.teach.mid || l.teach.old || l.teach.young || Object.values(l.teach)[0];
+
+/* ================================================================ GAMIFICATION ================================================================ */
+function addPoints(n){ P().points=(P().points||0)+n; }
+function level(){ return Math.floor((P().points||0)/100)+1; }
+function bumpStreak(){ const p=P(); const t=today(); if(p.lastDay===t) return; const y=new Date(Date.now()-864e5).toISOString().slice(0,10); p.streak = (p.lastDay===y)?(p.streak||0)+1:1; p.lastDay=t; }
+function earn(id){ const p=P(); p.badges=p.badges||[]; if(!p.badges.includes(id)){ p.badges.push(id); const b=BADGES.find(x=>x.id===id); toast(b.emoji+' Badge earned: '+b.name); } }
+function checkBadges(band){ const p=P();
+  if(Object.values(p.lessons).some(x=>x.done)) earn('first');
+  if(modProgress('respect',band).pct===100) earn('kind');
+  if(modProgress('digital',band).pct===100) earn('digital');
+  if((p.streak||0)>=3) earn('streak3');
+  if((p.streak||0)>=7) earn('streak7');
+  if((S.coachCount||0)>=3) earn('coach');
+  if(PATHS.some(pa=>pathProgress(pa.id,band).complete)) earn('ambassador');
+}
+
+/* ================================================================ ROUTER + RENDER ================================================================ */
+let route='dash', ctx={};
+function go(r,c={}){ route=r; ctx=c; render(); window.scrollTo(0,0); }
+function render(){
+  const root=$('#app');
+  applyA11y();
+  if(!S.org){ root.innerHTML=''; root.append(screenOrg()); return; }
+  if(!S.activeId || !P()){ root.innerHTML=''; root.append(screenWho()); return; }
+  document.documentElement.setAttribute('data-band', P().band);
+  root.innerHTML='';
+  root.append(topbar());
+  const main=el('main',{class:'wrap screen', role:'main'});
+  if(route==='dash') main.append(viewDash());
+  else if(route==='paths') main.append(viewPaths());
+  else if(route==='module') main.append(viewModule(ctx.mid));
+  else if(route==='lesson') main.append(viewLesson(ctx.id));
+  else if(route==='coach') main.append(viewCoach());
+  else if(route==='badges') main.append(viewBadges());
+  else if(route==='parent') main.append(viewParent());
+  else if(route==='cert') main.append(viewCert(ctx.pid));
+  root.append(main);
+  root.append(tabbar());
+}
+
+function screenOrg(){
+  const s=el('div',{class:'wrap screen', style:'display:grid;place-items:center;min-height:100vh'});
+  const c=el('div',{class:'card pad-lg', style:'max-width:460px;width:100%'});
+  c.append(
+    el('div',{class:'eyebrow'},'Welcome'),
+    el('h1',{},'Set up your academy'),
+    el('p',{class:'mut'},'Give your program a name. This is your white-label brand - schools, churches and academies each make it their own.'),
+    fieldWrap('Organization / program name', el('input',{id:'orgName', placeholder:'e.g. Grace & Confidence Academy', value:'Poise & Purpose Academy'})),
+    el('button',{class:'btn accent block mt', onclick:()=>{ const v=$('#orgName').value.trim()||'Poise & Purpose Academy'; S.org={name:v, initial:v.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase()}; save(); render(); }},'Continue \u2192'),
+    el('p',{class:'sm mut center mt'},'You can change this anytime in the grown-up area.')
+  );
+  s.append(c); return s;
+}
+
+function screenWho(){
+  const s=el('div',{class:'wrap screen', style:'padding-top:34px'});
+  s.append(el('div',{class:'brandmark', style:'justify-content:center;margin-bottom:8px'}, el('span',{class:'glyph'},S.org.initial), S.org.name));
+  const ids=Object.keys(S.profiles);
+  if(ids.length){
+    s.append(el('h2',{class:'center'},"Who's learning today?"));
+    const g=el('div',{class:'grid', style:'grid-template-columns:repeat(auto-fill,minmax(140px,1fr));max-width:640px;margin:0 auto'});
+    ids.forEach(id=>{ const p=S.profiles[id]; g.append(el('button',{class:'placecard', style:'text-align:center', onclick:()=>{S.activeId=id;save();go('dash');}},
+      el('div',{style:'font-size:2.2rem'}, avatarFor(p.band)),
+      el('div',{style:'font-weight:900;margin-top:6px'}, p.name),
+      el('div',{class:'chip line', style:'margin-top:6px'}, BANDS[p.band]))); });
+    g.append(el('button',{class:'placecard center', style:'border-style:dashed', onclick:()=>renderNewProfile(s)}, el('div',{style:'font-size:2rem'},'\uFF0B'), el('div',{style:'font-weight:900;margin-top:6px'},'Add learner')));
+    s.append(g);
+  } else { renderNewProfile(s, true); }
+  return s;
+}
+function avatarFor(b){ return {k1:'\u{1F9F8}',k2:'\u{1F388}',t1:'\u{1F31F}',t2:'\u2728',ya:'\u{1F393}'}[b]||'\u{1F31F}'; }
+function renderNewProfile(container, first){
+  const box=el('div',{class:'card pad-lg', style:'max-width:460px;margin:14px auto 0'});
+  let band='t1';
+  const bandBtns=el('div',{class:'grid', style:'grid-template-columns:1fr 1fr;gap:8px'});
+  const paint=()=>[...bandBtns.children].forEach(b=>b.style.borderColor = b.dataset.b===band?'var(--accent)':'var(--line)');
+  Object.entries(BANDS).forEach(([k,v])=>{ const b=el('button',{class:'opt', style:'margin:0;text-align:center', onclick:()=>{band=k;paint();}}); b.dataset.b=k; b.textContent=v; bandBtns.append(b); });
+  box.append(
+    el('div',{class:'eyebrow'}, first?'Create the first learner':'New learner'),
+    el('h2',{},'Add a learner'),
+    fieldWrap('First name (or nickname)', el('input',{id:'pn', placeholder:'e.g. Ava', maxlength:24})),
+    el('label',{class:'f'},'Age group'), bandBtns,
+    el('button',{class:'btn accent block mt', onclick:()=>{ const n=$('#pn').value.trim(); if(!n){toast('Please add a name');return;} const id=uid(); S.profiles[id]={name:n, band, points:0, streak:0, lastDay:null, badges:[], lessons:{}, certs:[]}; S.activeId=id; save(); go('dash'); }},'Start learning \u2192')
+  );
+  paint(); container.innerHTML=''; if(first){ container.append(el('div',{class:'brandmark',style:'justify-content:center;margin-bottom:8px'}, el('span',{class:'glyph'},S.org.initial), S.org.name)); container.append(el('h2',{class:'center'},'Create a learner profile')); }
+  container.append(box);
+}
+
+function topbar(){
+  const t=el('header',{class:'topbar'});
+  const w=el('div',{class:'wrap between', style:'height:58px'});
+  w.append(
+    el('div',{class:'brandmark'}, el('span',{class:'glyph'}, S.org.initial), el('span',{}, S.org.name)),
+    el('div',{class:'row'},
+      el('span',{class:'chip'}, '\u{1F525} '+(P().streak||0)),
+      el('span',{class:'chip', style:'background:var(--ink);color:#fff'}, '\u2605 '+(P().points||0)),
+      el('button',{class:'btn ghost sm', onclick:()=>{S.activeId=null;save();render();}, title:'Switch learner'}, avatarFor(P().band))
+    )
+  );
+  t.append(w); return t;
+}
+function tabbar(){
+  const items=[['dash','Home', icHome],['paths','Learn', icBook],['coach','Coach', icChat],['badges','Awards', icStar],['parent','Grown-ups', icShield]];
+  const t=el('nav',{class:'tabbar', 'aria-label':'Main'});
+  items.forEach(([r,label,ic])=>{ const b=el('button',{'aria-current':String(route===r||(r==='paths'&&['module','lesson','cert'].includes(route))), onclick:()=>go(r)}); b.innerHTML=ic; b.append(el('span',{},label)); t.append(b); });
+  return t;
+}
+
+function viewDash(){
+  const band=P().band, g=el('div',{class:'stack', style:'padding-top:22px'});
+  const hour=new Date().getHours(); const hi = hour<12?'Good morning':hour<18?'Good afternoon':'Good evening';
+  g.append(el('div',{}, el('div',{class:'eyebrow'}, hi), el('h1',{}, 'Hello, '+P().name+'!'),
+    el('p',{class:'mut'}, 'Level '+level()+' \u00B7 '+BANDS[band]+' \u00B7 '+(P().streak||0)+'-day streak')));
+  const next = LESSONS.find(l=>modAvailable(l.m,band) && (!l.bands||l.bands.includes(band)) && !P().lessons[l.id]?.done);
+  if(next){ const m=MODULES.find(x=>x.id===next.m);
+    const cc=el('div',{class:'card pad', style:'background:var(--ink);color:#fff;border:0'});
+    cc.append(el('div',{class:'eyebrow', style:'color:var(--accent-soft)'},'Pick up where you left off'),
+      el('h3',{style:'color:#fff'}, m.emoji+' '+next.title),
+      el('p',{style:'color:#e9e1f2;margin:.3em 0 1em'}, next.obj),
+      el('button',{class:'btn accent', onclick:()=>go('lesson',{id:next.id})}, 'Start lesson \u00B7 '+next.mins+' min'));
+    g.append(cc);
+  } else {
+    g.append(el('div',{class:'card pad center'}, el('div',{style:'font-size:2rem'},'\u{1F389}'), el('h3',{},"You've finished every available lesson!"), el('p',{class:'mut'},'Check your awards, or revisit a favorite path.')));
+  }
+  g.append(el('h2',{class:'mt'},'Your learning paths'));
+  const grid=el('div',{class:'grid', style:'grid-template-columns:repeat(auto-fill,minmax(210px,1fr))'});
+  PATHS.forEach(p=>{ if(!p.mods.some(mid=>modAvailable(mid,band))) return; const pr=pathProgress(p.id,band);
+    const card=el('button',{class:'placecard', onclick:()=> p.mods.length===1?go('module',{mid:p.mods[0]}):go('paths')});
+    card.append(el('div',{class:'seal'}, medallion(pr.pct)),
+      el('div',{class:'eyebrow'}, 'Path'),
+      el('div',{style:'font-weight:900;font-size:1.05rem;padding-right:52px'}, p.name),
+      el('div',{class:'sm mut', style:'margin-top:4px'}, pr.done+'/'+pr.total+' lessons'),
+      pr.complete? el('span',{class:'chip', style:'margin-top:10px'},'\u{1F3C5} Complete - get certificate') : null);
+    grid.append(card);
+  });
+  g.append(grid);
+  const chLesson = LESSONS[new Date().getDate() % LESSONS.length];
+  g.append(el('div',{class:'card pad mt'}, el('div',{class:'eyebrow'},"Today's etiquette challenge"),
+    el('p',{style:'margin:.3em 0 0;font-weight:700'}, '\u201C'+chLesson.challenge+'\u201D')));
+  return g;
+}
+function medallion(pct){
+  const m=el('div',{class:'medallion'}); const r=18, c=2*Math.PI*r, off=c*(1-pct/100);
+  m.innerHTML='<svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="'+r+'" fill="none" stroke="var(--line)" stroke-width="4"/><circle cx="23" cy="23" r="'+r+'" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'"/></svg><span class="pct">'+pct+'%</span>';
+  return m;
+}
+
+function viewPaths(){
+  const band=P().band, g=el('div',{class:'stack', style:'padding-top:22px'});
+  g.append(el('div',{}, el('div',{class:'eyebrow'},'Curriculum'), el('h1',{},'Learning paths')));
+  PATHS.forEach(p=>{ if(!p.mods.some(mid=>modAvailable(mid,band))) return; const pr=pathProgress(p.id,band);
+    const wrap=el('div',{class:'card pad'});
+    wrap.append(el('div',{class:'between'}, el('h3',{}, p.name), medallion(pr.pct)),
+      el('div',{class:'bar', style:'margin:6px 0 14px'}, el('i',{style:'width:'+pr.pct+'%'})));
+    p.mods.forEach(mid=>{ if(!modAvailable(mid,band)) return; const m=MODULES.find(x=>x.id===mid); const mp=modProgress(mid,band);
+      wrap.append(el('button',{class:'opt', style:'display:flex;justify-content:space-between;align-items:center;gap:10px', onclick:()=>go('module',{mid})},
+        el('span',{}, el('span',{style:'font-size:1.3rem;margin-right:8px'},m.emoji), el('strong',{},m.title)),
+        el('span',{class:'chip line'}, mp.done+'/'+mp.total)));
+    });
+    if(pr.complete) wrap.append(el('button',{class:'btn accent block mt', onclick:()=>go('cert',{pid:p.id})},'\u{1F393} View certificate'));
+    g.append(wrap);
+  });
+  return g;
+}
+
+function viewModule(mid){
+  const band=P().band, m=MODULES.find(x=>x.id===mid), ls=modLessons(mid,band);
+  const g=el('div',{class:'stack', style:'padding-top:22px'});
+  g.append(el('button',{class:'btn ghost sm', onclick:()=>go('paths')},'\u2190 Paths'),
+    el('div',{}, el('div',{class:'eyebrow'},'Module'), el('h1',{}, m.emoji+' '+m.title), el('p',{class:'mut'}, m.blurb)));
+  ls.forEach((l,i)=>{ const done=P().lessons[l.id]?.done;
+    g.append(el('button',{class:'placecard', onclick:()=>go('lesson',{id:l.id})},
+      el('div',{class:'seal'}, done?el('span',{style:'font-size:1.4rem'},'\u2705'):el('span',{class:'chip line'},l.mins+' min')),
+      el('div',{class:'eyebrow'}, 'Lesson '+(i+1)),
+      el('div',{style:'font-weight:900;font-size:1.08rem;padding-right:48px'}, l.title),
+      el('div',{class:'sm mut', style:'margin-top:4px'}, l.obj)));
+  });
+  return g;
+}
+
+/* ---------- lesson player ---------- */
+function viewLesson(id){
+  const l=LESSONS.find(x=>x.id===id), band=P().band;
+  const st={ step:0, quizIdx:0, quizScore:0, choiceOk:false, gamePerfect:false };
+  const g=el('div',{class:'stack', style:'padding-top:22px'});
+  const head=el('div',{class:'between'}, el('button',{class:'btn ghost sm', onclick:()=>go('module',{mid:l.m})},'\u2190 Back'), el('span',{class:'chip line'}, l.mins+' min'));
+  const bar=el('div',{class:'bar'}, el('i',{style:'width:0%'}));
+  const body=el('div',{class:'card pad-lg'});
+  g.append(head, bar, el('div',{}, el('div',{class:'eyebrow'}, MODULES.find(m=>m.id===l.m).title), el('h1',{}, l.title)), body);
+  const steps=['teach']; if(l.game) steps.push('game'); if(l.builder) steps.push('builder'); steps.push('choose'); l.quiz.forEach(()=>steps.push('quiz')); steps.push('reflect'); steps.push('done');
+  function setBar(){ bar.firstChild.style.width = Math.round(st.step/(steps.length-1)*100)+'%'; }
+  function draw(){ setBar(); body.innerHTML=''; const kind=steps[st.step];
+    if(kind==='teach'){
+      body.append(el('div',{class:'eyebrow'},'Learn'), el('p',{style:'font-size:1.08rem'}, teachFor(l,band)));
+      if(l.vocab&&l.vocab.length){ body.append(el('h3',{class:'mt'},'Words to know')); const ul=el('ul',{class:'tidy'}); l.vocab.forEach(([t,d])=>ul.append(el('li',{}, el('strong',{},t+': '), d))); body.append(ul); }
+      body.append(el('div',{class:'card pad mt', style:'background:var(--paper)'}, el('div',{class:'eyebrow'},'Scenario'), el('p',{style:'margin:.3em 0 0'}, l.scenario)));
+      body.append(nextBtn('Practice \u2192'));
+    }
+    else if(kind==='game'){ body.append(el('div',{class:'eyebrow'},'Try it'), el('h3',{},'Set the table'), tableGame(ok=>{ st.gamePerfect=ok; })); body.append(nextBtn('Continue \u2192')); }
+    else if(kind==='builder'){ body.append(el('div',{class:'eyebrow'},'Build'), el('h3',{},'Thank-you note builder'), noteBuilder()); body.append(nextBtn('Continue \u2192')); }
+    else if(kind==='choose'){
+      body.append(el('div',{class:'eyebrow'},'Choose the best response'), el('p',{style:'font-weight:700'}, l.choose.prompt));
+      let answered=false;
+      l.choose.opts.forEach(o=>{ const b=el('button',{class:'opt', onclick:()=>{ if(answered)return; answered=true; b.classList.add(o.ok?'correct':'wrong'); if(o.ok){st.choiceOk=true;} b.append(el('span',{class:'fb'}, o.fb)); [...body.querySelectorAll('.opt')].forEach(x=>x.disabled=true); body.append(nextBtn('Continue \u2192')); }}, o.t); body.append(b); });
+    }
+    else if(kind==='quiz'){
+      const q=l.quiz[st.quizIdx]; body.append(el('div',{class:'eyebrow'},'Quiz \u00B7 '+(st.quizIdx+1)+' of '+l.quiz.length), el('p',{style:'font-weight:700'}, q.q));
+      let answered=false;
+      q.o.forEach((opt,i)=>{ const b=el('button',{class:'opt', onclick:()=>{ if(answered)return; answered=true; const right=i===q.a; if(right){b.classList.add('correct');st.quizScore++;} else {b.classList.add('wrong'); body.querySelectorAll('.opt')[q.a].classList.add('correct');} body.append(el('p',{class:'sm mut mt'}, (right?'\u2714 ':'\u2192 ')+q.why)); [...body.querySelectorAll('.opt')].forEach(x=>x.disabled=true); body.append(nextBtn(st.quizIdx<l.quiz.length-1?'Next question \u2192':'Continue \u2192', ()=>{ st.quizIdx++; })); }}, opt); body.append(b); });
+    }
+    else if(kind==='reflect'){
+      body.append(el('div',{class:'eyebrow'},'Reflect'), el('p',{style:'font-weight:700'}, l.reflect));
+      const ta=el('textarea',{id:'refl', placeholder:'Write a sentence or two...'}); ta.value=P().lessons[l.id]?.reflection||''; body.append(ta);
+      body.append(el('div',{class:'card pad mt', style:'background:var(--paper)'}, el('div',{class:'eyebrow'},'Real-world challenge'), el('p',{style:'margin:.3em 0 0'}, l.challenge)));
+      body.append(el('div',{class:'card pad mt', style:'background:var(--paper)'}, el('div',{class:'eyebrow'},'For a grown-up'), el('p',{style:'margin:.3em 0 0'}, l.ext)));
+      body.append(nextBtn('Finish lesson \u2713'));
+    }
+    else if(kind==='done'){ finish(); }
+  }
+  function nextBtn(label, before){ return el('button',{class:'btn accent block mt', onclick:()=>{ if(steps[st.step]==='reflect'){ const r=$('#refl').value.trim(); P().lessons[l.id]=Object.assign(P().lessons[l.id]||{}, {reflection:r}); } if(before)before(); st.step++; draw(); }}, label); }
+  function finish(){
+    const perfect = st.quizScore===l.quiz.length;
+    const already = P().lessons[l.id]?.done;
+    P().lessons[l.id]=Object.assign(P().lessons[l.id]||{}, {done:true, score:st.quizScore, total:l.quiz.length, choiceOk:st.choiceOk});
+    let gained=0;
+    if(!already){ bumpStreak(); gained=20+(perfect?10:0)+(st.choiceOk?5:0)+(l.game&&st.gamePerfect?15:0); addPoints(gained); if(l.game&&st.gamePerfect) earn('table'); }
+    checkBadges(band); save();
+    body.innerHTML='';
+    body.append(el('div',{class:'center'}, el('div',{style:'font-size:3rem'},'\u{1F389}'), el('h2',{},'Lesson complete!'),
+      el('p',{class:'mut'}, 'Quiz: '+st.quizScore+'/'+l.quiz.length+(perfect?' - perfect!':'')),
+      el('div',{class:'row', style:'justify-content:center;gap:8px;margin:10px 0 4px'}, el('span',{class:'chip'},'\u2605 +'+gained+' points')),
+      el('div',{class:'row', style:'justify-content:center;gap:10px;margin-top:18px'},
+        el('button',{class:'btn ghost', onclick:()=>go('module',{mid:l.m})},'Back to module'),
+        el('button',{class:'btn accent', onclick:()=>{ const nx=LESSONS.find(x=>modAvailable(x.m,band)&&(!x.bands||x.bands.includes(band))&&!P().lessons[x.id]?.done); nx?go('lesson',{id:nx.id}):go('dash'); }},'Next lesson \u2192'))
+    ));
+  }
+  draw();
+  return g;
+}
+
+/* ---------- dining table game (click-to-place; touch + keyboard friendly) ---------- */
+function tableGame(onResult){
+  const slots=[
+    {id:'bread', x:32, y:30, round:true, label:'Bread plate'},
+    {id:'glass', x:66, y:30, round:true, label:'Water glass'},
+    {id:'napkin',x:22, y:56, label:'Napkin'},
+    {id:'fork',  x:34, y:56, label:'Fork'},
+    {id:'plate', x:50, y:58, round:true, label:'Plate'},
+    {id:'knife', x:66, y:56, label:'Knife'},
+    {id:'spoon', x:74, y:56, label:'Spoon'},
+  ];
+  const pieces={plate:'\u{1F37D}\uFE0F',fork:'\u{1F374}',knife:'\u{1F52A}',spoon:'\u{1F944}',napkin:'\u{1F9FB}',glass:'\u{1F943}',bread:'\u{1F956}'};
+  let held=null; const placed={};
+  const wrap=el('div',{class:'tablewrap'});
+  const mat=el('div',{class:'placemat', role:'group', 'aria-label':'Place setting'});
+  const slotEls={};
+  slots.forEach(s=>{ const d=el('button',{class:'slot'+(s.round?' round':''), style:'left:'+s.x+'%;top:'+s.y+'%', 'aria-label':'Place: '+s.label, onclick:()=>place(s.id)}); d.textContent=s.label; slotEls[s.id]=d; mat.append(d); });
+  const tray=el('div',{class:'tray'});
+  const trayBtns={};
+  Object.keys(pieces).forEach(k=>{ const b=el('button',{class:'token', 'aria-pressed':'false', onclick:()=>pick(k)}, el('span',{class:'piece'},pieces[k]), el('span',{}, slots.find(s=>s.id===k).label)); trayBtns[k]=b; tray.append(b); });
+  const status=el('p',{class:'sm mut', style:'margin-top:8px', role:'status'},'Tap an item, then tap where it belongs. Forks left, knife & spoon right, glass upper-right.');
+  function pick(k){ if(placed[k])return; held=k; Object.values(trayBtns).forEach(b=>{b.setAttribute('aria-pressed','false');b.setAttribute('aria-grabbed','false');}); trayBtns[k].setAttribute('aria-pressed','true'); trayBtns[k].setAttribute('aria-grabbed','true'); status.textContent='Now tap where the '+slots.find(s=>s.id===k).label.toLowerCase()+' goes.'; }
+  function place(slotId){ if(!held){status.textContent='Pick an item from the tray first.';return;} const correct = held===slotId;
+    if(correct){ placed[held]=true; slotEls[slotId].classList.add('filled'); slotEls[slotId].textContent=pieces[held]; slotEls[slotId].style.fontSize='clamp(1.2rem,4vw,1.9rem)'; trayBtns[held].classList.add('used'); trayBtns[held].disabled=true; trayBtns[held].setAttribute('aria-grabbed','false'); held=null;
+      const done=Object.keys(placed).length===slots.length;
+      status.textContent = done?'\u{1F389} Perfect setting! Every item is home.':"Nice - that's right. Keep going.";
+      if(done) onResult(true);
+    } else { status.textContent='Not quite - try another spot for the '+slots.find(s=>s.id===held).label.toLowerCase()+'.'; if(slotEls[slotId].animate) slotEls[slotId].animate([{transform:'translate(-50%,-50%) scale(1)'},{transform:'translate(-50%,-50%) scale(1.08)'},{transform:'translate(-50%,-50%) scale(1)'}],{duration:220}); }
+  }
+  wrap.append(mat, el('div',{}, el('h4',{},'Items to place'), tray, status));
+  return wrap;
+}
+
+/* ---------- thank-you note builder ---------- */
+function noteBuilder(){
+  const box=el('div',{});
+  const to=el('input',{placeholder:'To (e.g. Grandma)'});
+  const gift=el('input',{placeholder:"What you're thanking them for"});
+  const use=el('input',{placeholder:"How you'll use or enjoy it"});
+  const out=el('div',{class:'card pad mt', style:'background:var(--paper);font-family:var(--display);font-size:1.05rem;min-height:80px'});
+  const build=()=>{ out.textContent = 'Dear '+(to.value||'...')+', thank you so much for '+(gift.value||'...')+'. '+(use.value?use.value.charAt(0).toUpperCase()+use.value.slice(1)+'. ':'')+'It really means a lot. With love, '+P().name; };
+  [to,gift,use].forEach(i=>{ i.addEventListener('input',build); box.append(fieldWrap('', i)); });
+  build(); box.append(el('div',{class:'eyebrow', style:'margin-top:6px'},'Your note'), out);
+  return box;
+}
+
+/* ================================================================ AI ETIQUETTE COACH ================================================================ */
+function viewCoach(){
+  const band=P().band, g=el('div',{class:'stack', style:'padding-top:22px'});
+  g.append(el('div',{}, el('div',{class:'eyebrow'},'Ask for advice'), el('h1',{},'Etiquette Coach'),
+    el('p',{class:'mut'},"Ask anything about manners, confidence or tricky situations. Your coach keeps answers kind, safe and age-appropriate - and will always point you to a trusted adult when that's the right call.")));
+  const feed=el('div',{class:'chat card pad', style:'min-height:220px'});
+  feed.append(bubble('ai', 'Hi '+P().name+"! I'm your etiquette coach. What would you like help with today?"));
+  const sugg=el('div',{class:'suggests mt'});
+  ['What should I wear to a funeral?','How do I introduce my friend to my grandmother?',"What do I say when I get a gift I don't like?",'How do I apologize to my teacher?','Someone was rude to me - what do I do?'].forEach(q=>sugg.append(el('button',{onclick:()=>ask(q)},q)));
+  const rowform=el('div',{class:'row mt', style:'align-items:stretch'});
+  const inp=el('input',{placeholder:'Type your question...', 'aria-label':'Ask the coach', onkeydown:e=>{if(e.key==='Enter')ask(inp.value);}});
+  rowform.append(inp, el('button',{class:'btn accent', onclick:()=>ask(inp.value)},'Ask'));
+  g.append(feed, sugg, rowform);
+  async function ask(q){ q=(q||'').trim(); if(!q)return; inp.value=''; feed.append(bubble('me',q)); const thinking=bubble('ai','...'); feed.append(thinking); feed.scrollIntoView({block:'end'});
+    S.coachCount=(S.coachCount||0)+1; if(S.coachCount>=3) earn('coach'); save();
+    const ans = await coachAnswer(q, band, P().name);
+    thinking.remove(); const b=bubble('ai', ans.text); if(ans.safe) b.append(el('div',{class:'safe'},'\u{1F91D} '+ans.safe)); feed.append(b); feed.scrollIntoView({block:'end'});
+  }
+  return g;
+}
+function bubble(who,text){ return el('div',{class:'bubble '+who}, text); }
+
+async function coachAnswer(q, band, name){
+  try{
+    const r = await fetch('/.netlify/functions/etiquette-coach', {method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({question:q, ageBand:band, learnerName:name})});
+    if(r.ok){ const d=await r.json(); if(d && d.reply) return {text:d.reply, safe:d.trustedAdult?"It's always okay to check with a trusted adult.":null}; }
+  }catch(e){ /* offline / not deployed - use safe fallback */ }
+  return localCoach(q, band, name);
+}
+function localCoach(q, band, name){
+  const s=q.toLowerCase(); const y=bandGroup(band)==='young';
+  const red = /(secret|don'?t tell|nude|meet me|address|password|kill|hurt myself|self.?harm|run away|drugs|alcohol)/i.test(s);
+  if(red) return {text:'That sounds like something an adult who cares about you should help with. Please talk to a parent, guardian, teacher, or another trusted adult about this - you deserve real support, and you never have to keep something like this secret.', safe:'Please tell a trusted adult right away.'};
+  if(/funeral|memorial/.test(s)) return {text:'For a funeral, wear something simple and respectful - dark or muted colors, nothing flashy. Neat and modest is the goal. Speak softly, follow the family\u2019s lead, and a quiet "I\u2019m so sorry for your loss" is always right.', safe:'A parent can help you pick the outfit and know local customs.'};
+  if(/introduc/.test(s)) return {text:'Say both names and add a friendly detail. To an elder, name them first: "Grandma, this is my friend Ava. Ava, this is my grandmother, Mrs. Lee." A small shared fact helps them start talking.'};
+  if(/gift/.test(s)&&/(don'?t like|hate|ugly|bad)/.test(s)) return {text:'Smile and thank them warmly for the thought - "Thank you so much, that was really kind." Never mention that you don\u2019t like it or ask the price. The care behind a gift matters more than the gift itself.'};
+  if(/apolog|sorry/.test(s)) return {text:'Keep it simple and sincere: name what you did, say you\u2019re sorry with no "but," and offer to make it right. "I\u2019m sorry I turned in my work late. I should have planned better - may I still make it up?"'};
+  if(/rude|mean|bully/.test(s)) return {text:'Stay calm and don\u2019t match their rudeness - that keeps your dignity. You can step away, or say evenly, "I\u2019d rather we not talk like that." If it keeps happening or feels unsafe, tell a trusted adult.', safe:'If someone keeps being cruel, a trusted adult should know.'};
+  if(/dinner|table|fork|utensil/.test(s)) return {text:'At a formal dinner: napkin in your lap, wait for the host to begin, and work utensils from the outside in with each course. Small bites, mouth closed, and no phones at the table. When in doubt, follow what the host does.'};
+  if(/group ?(text|chat)|text/.test(s)) return {text:"In a group chat, keep it kind and brief, don't pile on anyone, and re-read before you send since tone is easy to misread. If a chat turns mean, don't join in - and tell a trusted adult if it gets serious."};
+  if(/nervous|shy|confiden|scared/.test(s)) return {text:"That's completely normal, "+name+'. Stand tall, breathe slowly, and speak a little slower than feels natural - it reads as calm and helps you feel calmer too. You\u2019ve got this.'};
+  return {text:'Good question! A safe rule of thumb: be kind, be honest, think about how the other person feels, and use "please" and "thank you." If it\u2019s a tricky or serious situation, it\u2019s always okay to ask a trusted adult for help.', safe: y?'When in doubt, ask a grown-up you trust.':null};
+}
+
+/* ---------- badges / awards ---------- */
+function viewBadges(){
+  const band=P().band, g=el('div',{class:'stack', style:'padding-top:22px'});
+  g.append(el('div',{}, el('div',{class:'eyebrow'},'Your progress'), el('h1',{},'Awards & achievements')));
+  g.append(el('div',{class:'card pad', style:'background:var(--ink);color:#fff;border:0'},
+    el('div',{class:'row', style:'gap:22px;flex-wrap:wrap'},
+      stat('\u2605 '+(P().points||0),'points'), stat('Lv '+level(),'level'), stat('\u{1F525} '+(P().streak||0),'day streak'),
+      stat((P().badges||[]).length+'/'+BADGES.length,'badges'))));
+  g.append(el('h2',{class:'mt'},'Badges'));
+  const grid=el('div',{class:'grid', style:'grid-template-columns:repeat(auto-fill,minmax(150px,1fr))'});
+  BADGES.forEach(b=>{ const has=(P().badges||[]).includes(b.id);
+    grid.append(el('div',{class:'card pad center', style:has?'':'opacity:.45;filter:grayscale(1)'},
+      el('div',{style:'font-size:2.2rem'}, b.emoji), el('div',{style:'font-weight:900'}, b.name), el('div',{class:'sm mut'}, b.desc))); });
+  g.append(grid);
+  const earned=PATHS.filter(p=>pathProgress(p.id,band).complete);
+  if(earned.length){ g.append(el('h2',{class:'mt'},'Certificates')); earned.forEach(p=>g.append(el('button',{class:'placecard', onclick:()=>go('cert',{pid:p.id})}, el('div',{class:'eyebrow'},'Certificate'), el('div',{style:'font-weight:900;font-size:1.05rem'}, p.cert), el('div',{class:'sm mut'},'Tap to view & print')))); }
+  return g;
+}
+function stat(big,label){ return el('div',{}, el('div',{style:'font-family:var(--display);font-size:1.7rem'}, big), el('div',{class:'sm', style:'opacity:.8'}, label)); }
+
+/* ---------- certificate ---------- */
+function viewCert(pid){
+  const p=PATHS.find(x=>x.id===pid); const band=P().band;
+  const g=el('div',{class:'stack', style:'padding-top:22px'});
+  g.append(el('button',{class:'btn ghost sm', onclick:()=>go('badges')},'\u2190 Awards'));
+  P().certs=P().certs||[]; let rec=P().certs.find(c=>c.pid===pid);
+  if(!rec){ rec={pid, code:'PPA-'+(Math.random().toString(36).slice(2,7).toUpperCase()), date:today(), instructor:'Academy Instructor'}; P().certs.push(rec); save(); }
+  const cert=el('div',{class:'cert', id:'certArea'});
+  cert.append(el('div',{class:'eyebrow', style:'color:var(--accent-ink)'}, S.org.name),
+    el('h2',{},'Certificate of Completion'),
+    el('p',{class:'mut', style:'margin:0'},'This certifies that'),
+    el('div',{class:'name'}, P().name),
+    el('p',{style:'margin:0 0 4px'},'has completed the'),
+    el('h3',{style:'font-size:1.4rem'}, p.cert),
+    el('p',{class:'sm mut'}, 'Age group '+BANDS[band]+' \u00B7 '+rec.date));
+  const foot=el('div',{class:'between', style:'margin-top:22px;align-items:flex-end;gap:14px'});
+  const left=el('div',{class:'sm', style:'text-align:left'}, el('div',{}, el('strong',{},'Instructor: '), rec.instructor), el('div',{}, el('strong',{},'Organization: '), S.org.name), el('div',{}, el('strong',{},'Verify code: '), rec.code));
+  const qr=el('div',{}); try{ const t=qrcode(0,'M'); t.addData(location.origin+'/verify?code='+rec.code); t.make(); qr.innerHTML=t.createSvgTag({cellSize:3,margin:0}); }catch(e){ qr.append(el('div',{class:'chip line'},'Verify: '+rec.code)); }
+  foot.append(left, el('div',{class:'center'}, qr, el('div',{class:'sm mut'},'Scan to verify')));
+  cert.append(foot);
+  g.append(cert, el('button',{class:'btn accent block mt', onclick:()=>window.print()},'\u{1F5A8}\uFE0F Print / Save as PDF'));
+  return g;
+}
+
+/* ================================================================ GROWN-UP AREA ================================================================ */
+function viewParent(){
+  const g=el('div',{class:'stack', style:'padding-top:22px'});
+  g.append(el('div',{}, el('div',{class:'eyebrow'},'For parents, guardians & instructors'), el('h1',{},'Grown-up area')));
+  if(!ctx.unlocked){
+    const c=el('div',{class:'card pad-lg', style:'max-width:420px'});
+    const tryPin=()=>{ if($('#pin').value===S.parentPin) go('parent',{unlocked:true}); else toast('Incorrect PIN'); };
+    if(!S.parentPin){
+      c.append(el('p',{},'Create a 4-digit PIN to protect this area.'), fieldWrap('New PIN', el('input',{id:'pin', inputmode:'numeric', maxlength:4, placeholder:'\u2022\u2022\u2022\u2022'})),
+        el('button',{class:'btn accent block mt', onclick:()=>{ const v=$('#pin').value; if(!/^\d{4}$/.test(v)){toast('Enter 4 digits');return;} S.parentPin=v; save(); go('parent',{unlocked:true}); }},'Set PIN & enter'));
+    } else {
+      c.append(el('p',{},'Enter your PIN.'), fieldWrap('PIN', el('input',{id:'pin', inputmode:'numeric', maxlength:4, placeholder:'\u2022\u2022\u2022\u2022', onkeydown:e=>{if(e.key==='Enter')tryPin();}})),
+        el('button',{class:'btn accent block mt', onclick:tryPin},'Enter'));
+    }
+    g.append(c); return g;
+  }
+  g.append(el('div',{class:'between'}, el('h2',{style:'margin:0'},'Learner progress'), el('button',{class:'btn ghost sm', onclick:()=>go('parent',{})},'Lock \u{1F512}')));
+  Object.entries(S.profiles).forEach(([id,p])=>{
+    const band=p.band; let totL=0, doneL=0, scoreSum=0, scoreN=0; const refs=[];
+    LESSONS.forEach(l=>{ if(!modAvailable(l.m,band)||(l.bands&&!l.bands.includes(band)))return; totL++; const st=p.lessons[l.id]; if(st&&st.done){doneL++; if(st.total){scoreSum+=st.score/st.total;scoreN++;} if(st.reflection)refs.push([l.title,st.reflection]); } });
+    const c=el('div',{class:'card pad'});
+    c.append(el('div',{class:'between'}, el('h3',{style:'margin:0'}, avatarFor(band)+' '+p.name), el('span',{class:'chip line'}, BANDS[band])),
+      el('div',{class:'row mt', style:'gap:18px;flex-wrap:wrap'}, stat2(doneL+'/'+totL,'lessons done'), stat2((scoreN?Math.round(scoreSum/scoreN*100):0)+'%','avg quiz'), stat2((p.points||0),'points'), stat2((p.streak||0),'day streak'), stat2((p.badges||[]).length,'badges')),
+      el('div',{class:'bar mt'}, el('i',{style:'width:'+(totL?Math.round(doneL/totL*100):0)+'%'})));
+    if(refs.length){ const d=el('details',{style:'margin-top:12px'}); d.append(el('summary',{style:'cursor:pointer;font-weight:800'}, 'Reflections ('+refs.length+')')); refs.forEach(([t,r])=>d.append(el('div',{class:'card pad', style:'background:var(--paper);margin-top:8px'}, el('div',{class:'eyebrow'},t), el('p',{style:'margin:.3em 0 0'}, r)))); c.append(d); }
+    g.append(c);
+  });
+  const ctrls=el('div',{class:'card pad'});
+  const orgInput=el('input',{value:S.org.name}); orgInput.addEventListener('change',()=>{S.org.name=orgInput.value.trim()||S.org.name; S.org.initial=S.org.name.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase(); save(); toast('Saved');});
+  ctrls.append(el('h3',{},'Settings'),
+    el('p',{class:'sm mut'},'This MVP stores data on this device only. A production build adds secure accounts, cloud sync, weekly email summaries, messaging controls and screen-time limits.'),
+    fieldWrap('Organization name (white-label)', orgInput),
+    el('div',{class:'row mt', style:'flex-wrap:wrap;gap:8px'},
+      el('button',{class:'btn ghost sm', onclick:()=>{ if(confirm('Reset the PIN?')){S.parentPin=null;save();go('parent',{});} }},'Reset PIN'),
+      el('button',{class:'btn ghost sm', onclick:()=>{ const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); const a=el('a',{href:URL.createObjectURL(blob), download:'academy-data.json'}); a.click(); }},'Export data'),
+      el('button',{class:'btn ghost sm', style:'color:var(--bad)', onclick:()=>{ if(confirm('Delete ALL data on this device? This cannot be undone.')){ localStorage.removeItem(KEY); S=fresh(); go('dash'); } }},'Delete all data')));
+  g.append(ctrls);
+  return g;
+}
+function stat2(big,label){ return el('div',{}, el('div',{style:'font-family:var(--display);font-size:1.5rem;color:var(--ink)'}, String(big)), el('div',{class:'sm mut'}, label)); }
+
+/* ================================================================ ACCESSIBILITY ================================================================ */
+function applyA11y(){ const a=S.a11y; document.documentElement.style.setProperty('--fs', a.fs); document.documentElement.setAttribute('data-contrast', a.contrast); document.documentElement.setAttribute('data-dys', a.dys); }
+$('#a11yBtn').addEventListener('click', ()=>{
+  const a=S.a11y;
+  const modal=el('div',{class:'scrim', onclick:e=>{if(e.target===modal)modal.remove();}});
+  const m=el('div',{class:'modal pad-lg'});
+  m.append(el('div',{class:'between'}, el('h2',{style:'margin:0'},'Accessibility'), el('button',{class:'btn ghost sm', onclick:()=>modal.remove()},'Close')),
+    el('label',{class:'f mt'},'Text size'),
+    el('div',{class:'row'}, ...[['Small',.9],['Normal',1],['Large',1.18],['X-Large',1.35]].map(([n,v])=>el('button',{class:'btn '+(a.fs===v?'accent':'ghost')+' sm', onclick:()=>{a.fs=v;save();applyA11y();render();}},n))),
+    el('label',{class:'f mt'},'Contrast'),
+    el('div',{class:'row'}, el('button',{class:'btn '+(a.contrast==='normal'?'accent':'ghost')+' sm', onclick:()=>{a.contrast='normal';save();applyA11y();}},'Normal'), el('button',{class:'btn '+(a.contrast==='high'?'accent':'ghost')+' sm', onclick:()=>{a.contrast='high';save();applyA11y();}},'High contrast')),
+    el('label',{class:'f mt'},'Dyslexia-friendly reading'),
+    el('div',{class:'row'}, el('button',{class:'btn '+(a.dys==='off'?'accent':'ghost')+' sm', onclick:()=>{a.dys='off';save();applyA11y();}},'Off'), el('button',{class:'btn '+(a.dys==='on'?'accent':'ghost')+' sm', onclick:()=>{a.dys='on';save();applyA11y();}},'On (more spacing)')),
+    el('p',{class:'sm mut mt'},'Audio narration, captions, full keyboard navigation and additional languages are on the production roadmap. This build targets WCAG AA color, focus and structure.'));
+  modal.append(m); document.body.append(modal);
+});
+
+function fieldWrap(label, input){ const w=el('div',{style:'margin-bottom:12px'}); if(label)w.append(el('label',{class:'f'},label)); w.append(input); return w; }
+let toastT; function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2200); }
+
+const icHome='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>';
+const icBook='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 3v18"/></svg>';
+const icChat='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.2 7.3L3 21l1.7-6A8 8 0 1 1 21 12z"/></svg>';
+const icStar='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 18l-5.9 3 1.2-6.5L2.5 9.9 9 9z"/></svg>';
+const icShield='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg>';
+
+render();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+# Netlify config for Poise & Purpose Academy
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Serve the SPA for the certificate-verify route (optional)
+[[redirects]]
+  from = "/verify"
+  to = "/index.html"
+  status = 200
