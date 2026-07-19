@@ -108,18 +108,42 @@ $('load').onclick=loadScripts;
 /* ---- load HeyGen avatars & voices ---- */
 $('loadAv').onclick=async ()=>{
   $('avStatus').textContent='loading…'; $('loadAv').disabled=true;
-  try{
-    const d=await getJSON(await fetch(LIST));
-    if(d.error) throw new Error(d.error);
-    AV=d.avatars||[]; VO=d.voices||[];
-    VO.sort((a,b)=>(a.lang+a.name).localeCompare(b.lang+b.name));
+  const populateVoices=()=>{ VO.sort((a,b)=>(a.lang+a.name).localeCompare(b.lang+b.name));
     $('voiceSel').innerHTML='<option value="">— choose a voice —</option>'+
-      VO.map(v=>`<option value="${v.id}">${(v.lang?('['+v.lang+'] '):'')}${v.name}${v.gender?(' · '+v.gender):''}</option>`).join('');
-    renderAvatars();
-    $('avStatus').textContent=AV.length+' avatars · '+VO.length+' voices';
+      VO.map(v=>`<option value="${v.id}">${(v.lang?('['+v.lang+'] '):'')}${v.name}${v.gender?(' · '+v.gender):''}</option>`).join(''); };
+  try{
+    // 1) use cached avatars/voices if we fetched them before (avatars list is slow)
+    let cached=null; try{ cached=JSON.parse(localStorage.getItem('heygen_cache')||'null'); }catch(_){}
+    if(cached && cached.avatars && cached.avatars.length){
+      AV=cached.avatars; VO=cached.voices||[]; populateVoices(); renderAvatars();
+      $('avStatus').textContent=AV.length+' avatars · '+VO.length+' voices (cached)';
+      $('loadAv').disabled=false; log('Loaded avatars from browser cache. Click "Clear cache" text below to refresh.'); return;
+    }
+    // 2) first call: voices + maybe avatars
+    const d=await getJSON(await fetch(LIST));
+    if(d.error && !(d.voices&&d.voices.length)) throw new Error(d.error);
+    AV=d.avatars||[]; VO=d.voices||[]; populateVoices(); if(AV.length) renderAvatars();
+    // 3) avatars list is slow — retry with the full budget dedicated to it
+    for(let i=0;i<3 && !AV.length;i++){
+      $('avStatus').textContent='voices ready · fetching avatars (attempt '+(i+1)+'/3)…';
+      const a=await getJSON(await fetch(LIST+'?only=avatars'));
+      AV=a.avatars||[];
+    }
+    if(AV.length){
+      renderAvatars();
+      try{ localStorage.setItem('heygen_cache', JSON.stringify({avatars:AV, voices:VO, ts:Date.now()})); }catch(_){}
+      $('avStatus').textContent=AV.length+' avatars · '+VO.length+' voices';
+    } else {
+      $('avStatus').textContent=VO.length+' voices · avatars slow to load';
+      $('avGrid').innerHTML='<div class="mut" style="grid-column:1/-1">HeyGen\u2019s avatar list is timing out (it returns the whole library at once). '+
+        'You can still proceed: pick a <b>voice</b> above, then paste one <b>avatar ID</b> into the field below. '+
+        'Get an ID from HeyGen \u2192 Avatars (open an avatar\u2019s menu \u2192 Copy ID). A known public one to try: '+
+        '<code>Angela-inblackskirt-20220820</code>. Then click Generate.</div>';
+    }
   }catch(e){ $('avStatus').textContent='error'; log('List failed: '+e.message+' (is HEYGEN_API_KEY set + redeployed?)'); }
   $('loadAv').disabled=false;
 };
+$('avStatus').ondblclick=()=>{ localStorage.removeItem('heygen_cache'); log('avatar cache cleared — click Load again.'); };
 function renderAvatars(){
   const q=$('search').value.trim().toLowerCase();
   const list=AV.filter(a=>!q||a.name.toLowerCase().includes(q)).slice(0,120);

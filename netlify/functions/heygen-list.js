@@ -6,7 +6,7 @@
 
 const AVATARS_URL = 'https://api.heygen.com/v2/avatars';
 const VOICES_URL  = 'https://api.heygen.com/v2/voices';
-const TIMEOUT = 9000; // stay just under Netlify's 10s function limit
+const TIMEOUT = 9500; // stay just under Netlify's 10s function limit
 
 function arr(d, ...keys){
   for (const k of keys){
@@ -70,6 +70,12 @@ exports.handler = async (event) => {
       topLevelKeys: top, dataKeys, parsedCount: parsed.length,
       firstRaw: (arr(a.json,'data.avatars','avatars','data.talking_photos','talking_photos')[0]) || null,
     }, null, 2) };
+  }
+
+  if (q.only === 'avatars') {
+    const a = await getJSON(AVATARS_URL, key, TIMEOUT);
+    const avatars = extractAvatars(a.json);
+    return { statusCode: 200, headers, body: JSON.stringify({ avatars, diag:{avatars:{status:a.status,count:avatars.length,note:a.snippet}} }) };
   }
 
   const [a, v] = await Promise.all([ getJSON(AVATARS_URL, key, TIMEOUT), getJSON(VOICES_URL, key, TIMEOUT) ]);
