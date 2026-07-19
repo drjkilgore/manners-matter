@@ -4,22 +4,45 @@ White-label etiquette, character, confidence & life-skills app for children and 
 
 ## Repo structure (keep as-is)
 ```
-index.html                          # the app (runs standalone)
-netlify.toml                        # Netlify config
-netlify/functions/etiquette-coach.js# AI coach proxy (safety guardrails)
-db/schema.sql                       # Supabase schema (for real accounts, later)
+index.html                            # the app (runs standalone)
+netlify.toml                          # Netlify config
+netlify/functions/etiquette-coach.js  # AI coach proxy (safety guardrails)
+netlify/functions/generate-narration.js # HeyGen avatar video generation
+admin/narration.html                  # browser tool to build the narration manifest
+lesson-scripts.json                   # lesson narration scripts (source for the tool)
+narration-manifest.json               # (you generate this) maps lesson -> video URL
+db/schema.sql                         # Supabase schema (for real accounts, later)
 ```
 
 ## Deploy
 1. Create a GitHub repo. Upload the **extracted** files above (not the .zip).
    Drag-and-drop preserves the folders.
 2. In Netlify: **Add new site → Import from GitHub**, pick the repo.
-   Root publish; functions are auto-detected from `netlify.toml`.
-3. (Optional, turns on the live AI coach) Netlify → Site settings →
-   Environment variables → add:
-   - `ANTHROPIC_API_KEY` — your Anthropic key
-   - `ALLOW_ORIGIN` — your site URL (e.g. https://your-site.netlify.app)
-   Redeploy. Without a key, the coach uses a built-in safe offline fallback.
+   Root publish; functions auto-detected from `netlify.toml`.
+3. Environment variables (Netlify → Site settings → Environment):
+   - `ANTHROPIC_API_KEY` — turns on the live AI coach (else it uses a safe offline fallback)
+   - `HEYGEN_API_KEY` — enables avatar narration generation
+   - `ALLOW_ORIGIN` — your site URL (optional)
+   Redeploy.
+
+## Avatar narration (HeyGen, pre-rendered)
+The app plays a short avatar video on any lesson that has one; lessons without a
+video just show text. To create the videos:
+
+1. Set `HEYGEN_API_KEY` in Netlify and redeploy.
+2. In HeyGen, pick a friendly stock avatar; copy its **avatar ID** and a **voice ID**.
+   (Don't use a real person's likeness without consent.)
+3. Open `https://your-site/admin/narration.html`, paste the two IDs, click
+   **Generate all narrations**. It renders each lesson and builds
+   `narration-manifest.json`.
+4. Download that file, commit it to the repo root, redeploy. Narrations now appear.
+
+Notes:
+- HeyGen video URLs can be temporary. For a durable app, download each MP4 and
+  re-host on Supabase Storage / Netlify, then put those URLs in the manifest.
+- Pre-rendered narration suits fixed lesson content. The live AI coach stays
+  text/voice for now; a real-time face would use HeyGen **LiveAvatar (LITE mode)**
+  driven by the coach function so the safety guardrails still apply.
 
 ## Notes
 - The MVP stores learner data in the browser on one device.

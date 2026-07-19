@@ -1,0 +1,116 @@
+[
+  {
+    "key": "respect-1",
+    "title": "Respect Starts With You",
+    "module": "respect",
+    "script": "Respect Starts With You. Respect is treating people as though they matter, even when you disagree. It starts with how you treat yourself: people who value themselves find it easier to value others."
+  },
+  {
+    "key": "respect-2",
+    "title": "A Real Apology",
+    "module": "respect",
+    "script": "A Real Apology. A sincere apology names the specific thing you did, takes responsibility without excuses, and offers to make it right. Skip \"sorry you feel that way\" - that blames the other person."
+  },
+  {
+    "key": "greet-1",
+    "title": "A Warm Hello",
+    "module": "greet",
+    "script": "A Warm Hello. A strong greeting has four quick parts: eye contact, a smile, a warm \"Hello,\" and the person’s name or title. Use Mr., Ms., Mrs., Dr., Coach, Pastor or Professor for adults unless they invite you to use their first name."
+  },
+  {
+    "key": "greet-2",
+    "title": "Introducing Two People",
+    "module": "greet",
+    "script": "Introducing Two People. Introduce people by saying each name and adding a detail that gives them something to talk about. Traditionally you name the person you honor first (an elder or guest)."
+  },
+  {
+    "key": "convo-1",
+    "title": "The Art of Listening",
+    "module": "convo",
+    "script": "The Art of Listening. Active listening means giving your attention, not interrupting, and asking follow-up questions that show you heard them. Let them finish before sharing your own story."
+  },
+  {
+    "key": "convo-2",
+    "title": "Reading the Room",
+    "module": "convo",
+    "script": "Reading the Room. Reading the room means noticing cues and adjusting. Skip gossip and oversharing. To disagree, attack the idea, not the person: \"I see it differently...\""
+  },
+  {
+    "key": "polite-1",
+    "title": "The Magic Words",
+    "module": "polite",
+    "script": "The Magic Words. Polite language turns demands into requests. \"Give me that\" becomes \"Could I please have that?\" These small words signal that you see the other person as a person."
+  },
+  {
+    "key": "dining-1",
+    "title": "Table Basics",
+    "module": "dining",
+    "script": "Table Basics. Core habits: wash up first, napkin in your lap, wait until everyone is served (or the host begins), take reasonable portions, chew with your mouth closed, and don't talk with food in your mouth. Ask for items to be passed rather than reaching."
+  },
+  {
+    "key": "dining-2",
+    "title": "Set the Table",
+    "module": "dining",
+    "script": "Set the Table. A basic setting: napkin and fork on the left; plate in the center; knife (blade facing the plate) and spoon on the right; water glass above the knife; bread plate upper left. Use utensils from the outside in as courses arrive."
+  },
+  {
+    "key": "digital-1",
+    "title": "Kind on the Keyboard",
+    "module": "digital",
+    "script": "Kind on the Keyboard. Online, tone is invisible - a joke can read as an insult. Re-read before sending, don't pile on, and never forward embarrassing content about someone. Assume anything you post could be screenshotted and permanent."
+  },
+  {
+    "key": "digital-2",
+    "title": "Guard Your Privacy",
+    "module": "digital",
+    "script": "Guard Your Privacy. Never share passwords, your address, or your location publicly. Be suspicious of messages that create urgency or ask for money or info - that's how scams work. Ask permission before posting a photo of someone else. If anyone asks you to keep an online chat secret from your family, that's a red flag - tell a trusted adult."
+  },
+  {
+    "key": "confidence-1",
+    "title": "Stand Tall",
+    "module": "confidence",
+    "script": "Stand Tall. Confidence is partly physical: stand tall, plant your feet, make eye contact, and speak a little slower and clearer than feels natural. Managing a nervous habit starts with noticing it."
+  },
+  {
+    "key": "confidence-2",
+    "title": "Compliments & Criticism",
+    "module": "confidence",
+    "script": "Compliments & Criticism. Accept a compliment with a simple \"Thank you\" - no arguing it away. Receive criticism by listening fully, resisting defensiveness, and asking a question if unsure."
+  },
+  {
+    "key": "host-1",
+    "title": "The Gracious Guest",
+    "module": "host",
+    "script": "The Gracious Guest. Great guests reply to the invitation (RSVP), arrive on time, follow the household’s rules, keep phone use low, offer to help, thank the host warmly, and don’t overstay. A small host gift is a classic kindness."
+  },
+  {
+    "key": "host-2",
+    "title": "The Thoughtful Host",
+    "module": "host",
+    "script": "The Thoughtful Host. A thoughtful host greets guests warmly, offers refreshments, makes introductions so no one is stranded, includes everyone in the activity, and checks for needs like food allergies."
+  },
+  {
+    "key": "thanks-1",
+    "title": "Receiving a Gift",
+    "module": "thanks",
+    "script": "Receiving a Gift. Receiving well is a skill: make eye contact, say a specific thank-you (\"Thank you - I love the color\"), and never comment on cost or disappointment. The giver’s effort is the real gift."
+  },
+  {
+    "key": "thanks-2",
+    "title": "The Thank-You Note",
+    "module": "thanks",
+    "script": "The Thank-You Note. A great note names the gift or act specifically, says how you’ll use or enjoy it, and closes warmly. Handwritten notes stand out; a text is fine for casual thanks. Send it within a few days."
+  },
+  {
+    "key": "pro-1",
+    "title": "The Professional Handshake & Intro",
+    "module": "pro",
+    "script": "The Professional Handshake & Intro. In professional settings, lead with a firm (not crushing) handshake, eye contact, a smile, and a clear \"Hi, I’m ___.\" In email, use a real subject line, a proper greeting (\"Dear Ms. Ortiz,\"), concise body, and a sign-off with your name. Proofread before you send - sloppy email undercuts a strong resume."
+  },
+  {
+    "key": "pro-2",
+    "title": "Interview Poise",
+    "module": "pro",
+    "script": "Interview Poise. Interviews reward preparation and composure. Research the place, dress one notch above the everyday norm, arrive 5-10 minutes early, silence your phone, greet everyone warmly, and answer with specific examples. It's fine to pause before answering. Follow up within a day with a short thank-you note - most people don't, and it's remembered."
+  }
+]

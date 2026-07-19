@@ -777,6 +777,8 @@ function viewLesson(id){
   function setBar(){ bar.firstChild.style.width = Math.round(st.step/(steps.length-1)*100)+'%'; }
   function draw(){ setBar(); body.innerHTML=''; const kind=steps[st.step];
     if(kind==='teach'){
+      const nar=narrationFor(l.id);
+      if(nar&&nar.video){ const v=el('video',{controls:'',playsinline:'',preload:'metadata',style:'width:100%;border-radius:var(--r-sm);background:#000;margin-bottom:14px'}); v.append(el('source',{src:nar.video,type:'video/mp4'})); if(nar.captions) v.append(el('track',{kind:'captions',src:nar.captions,srclang:'en','default':''})); body.append(el('div',{class:'eyebrow'},'Watch'), v); }
       body.append(el('div',{class:'eyebrow'},'Learn'), el('p',{style:'font-size:1.08rem'}, teachFor(l,band)));
       if(l.vocab&&l.vocab.length){ body.append(el('h3',{class:'mt'},'Words to know')); const ul=el('ul',{class:'tidy'}); l.vocab.forEach(([t,d])=>ul.append(el('li',{}, el('strong',{},t+': '), d))); body.append(ul); }
       body.append(el('div',{class:'card pad mt', style:'background:var(--paper)'}, el('div',{class:'eyebrow'},'Scenario'), el('p',{style:'margin:.3em 0 0'}, l.scenario)));
@@ -1026,7 +1028,17 @@ const icChat='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 const icStar='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 18l-5.9 3 1.2-6.5L2.5 9.9 9 9z"/></svg>';
 const icShield='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg>';
 
-render();
+/* ---------- optional avatar narration (HeyGen pre-rendered) ---------- */
+let NARR={};
+function narrationFor(id){ return NARR[id]||null; }
+function boot(){
+  fetch('narration-manifest.json',{cache:'no-store'})
+    .then(r=>r.ok?r.json():null)
+    .then(j=>{ if(j&&j.lessons) NARR=j.lessons; })
+    .catch(()=>{})
+    .finally(render);
+}
+boot();
 
 </script>
 </body>
