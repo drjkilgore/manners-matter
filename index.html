@@ -213,6 +213,17 @@ const bandGroup = b => ({k1:'young',k2:'young',t1:'mid',t2:'old',ya:'old'}[b]||'
 const today = ()=> new Date().toISOString().slice(0,10);
 const uid = ()=> Math.random().toString(36).slice(2,9);
 
+/* ===== LIVE COACH (optional HeyGen LiveAvatar embed) ============
+   Fill these to enable the talking-face coach inside the Coach tab.
+   - Create a kid-appropriate avatar + context at app.liveavatar.com
+   - Set LIVEAVATAR_API_KEY in Netlify (separate from your HeyGen key)
+   Leave enabled:false to keep only the guardrailed text coach.
+   Keep sandbox:true (free, no credits) while testing.
+   NOTE: the live avatar uses HeyGen's model steered by your context,
+   NOT this app's coded child-safety guardrails. The text coach below
+   it always stays available as the safe default. */
+const LIVECOACH = { enabled:false, avatarId:'', contextId:'', sandbox:true };
+
 /* ================================================================
    CURRICULUM  (seed set - data-driven so lessons expand cleanly)
    ================================================================ */
@@ -877,6 +888,21 @@ function viewCoach(){
   const band=P().band, g=el('div',{class:'stack', style:'padding-top:22px'});
   g.append(el('div',{}, el('div',{class:'eyebrow'},'Ask for advice'), el('h1',{},'Etiquette Coach'),
     el('p',{class:'mut'},"Ask anything about manners, confidence or tricky situations. Your coach keeps answers kind, safe and age-appropriate - and will always point you to a trusted adult when that's the right call.")));
+  if(LIVECOACH.enabled && LIVECOACH.avatarId && LIVECOACH.contextId){
+    const live=el('div',{class:'card pad', style:'background:var(--ink);color:#fff;border:0'});
+    const stage=el('div',{style:'margin-top:12px'});
+    const btn=el('button',{class:'btn accent', onclick:async ()=>{ btn.disabled=true; btn.textContent='Starting…';
+      try{ const r=await fetch('/.netlify/functions/liveavatar-embed',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({avatarId:LIVECOACH.avatarId,contextId:LIVECOACH.contextId,sandbox:LIVECOACH.sandbox})});
+        const d=await r.json(); if(!d.url) throw new Error(d.error||'no url');
+        stage.innerHTML='<iframe src="'+d.url+'" allow="microphone" title="Live Coach" style="width:100%;aspect-ratio:16/9;border:none;border-radius:14px"></iframe>';
+        btn.remove();
+      }catch(e){ btn.disabled=false; btn.textContent='\u{1F3A5} Talk to the live coach'; toast('Live coach unavailable'); } }},'\u{1F3A5} Talk to the live coach');
+    live.append(el('div',{class:'eyebrow', style:'color:var(--accent-soft)'}, LIVECOACH.sandbox?'Live avatar \u00B7 sandbox (free)':'Live avatar coach'),
+      el('p',{style:'color:#e9e1f2;margin:.3em 0 1em'},'Meet a talking-face coach \u2014 or scroll down to type your question to the text coach.'),
+      btn, stage);
+    g.append(live);
+  }
   const feed=el('div',{class:'chat card pad', style:'min-height:220px'});
   feed.append(bubble('ai', 'Hi '+P().name+"! I'm your etiquette coach. What would you like help with today?"));
   const sugg=el('div',{class:'suggests mt'});
