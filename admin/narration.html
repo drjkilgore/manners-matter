@@ -86,6 +86,13 @@ const GEN='/.netlify/functions/generate-narration';
 const LIST='/.netlify/functions/heygen-list';
 let manifest={lessons:{}}, AV=[], VO=[], selId='';
 
+/* parse a response as JSON, but surface the real status/body on failure */
+async function getJSON(resp){
+  const raw=await resp.text();
+  try{ return JSON.parse(raw); }
+  catch(e){ throw new Error('HTTP '+resp.status+' — '+(raw.trim().slice(0,200)||'empty response (function not deployed or crashed)')); }
+}
+
 /* ---- load lesson scripts ---- */
 async function loadScripts(){
   try{
@@ -102,7 +109,7 @@ $('load').onclick=loadScripts;
 $('loadAv').onclick=async ()=>{
   $('avStatus').textContent='loading…'; $('loadAv').disabled=true;
   try{
-    const r=await fetch(LIST); const d=await r.json();
+    const d=await getJSON(await fetch(LIST));
     if(d.error) throw new Error(d.error);
     AV=d.avatars||[]; VO=d.voices||[];
     VO.sort((a,b)=>(a.lang+a.name).localeCompare(b.lang+b.name));
@@ -135,14 +142,14 @@ $('voiceSel').onchange=()=>{ if($('voiceSel').value) $('voiceId').value=$('voice
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function generateOne(item, avatarId, voiceId){
   log('→ '+item.key+': submitting…');
-  const cr=await fetch(GEN,{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({script:item.script, avatarId, voiceId})});
-  const cd=await cr.json();
+  let cd; try{ cd=await getJSON(await fetch(GEN,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({script:item.script, avatarId, voiceId})})); }
+  catch(e){ log('  ✗ '+e.message); return null; }
   if(!cd.video_id){ log('  ✗ create failed: '+JSON.stringify(cd).slice(0,200)); return null; }
   log('  video_id '+cd.video_id+' — rendering…');
   for(let i=0;i<45;i++){
     await sleep(8000);
-    const sd=await (await fetch(GEN+'?video_id='+encodeURIComponent(cd.video_id))).json();
+    const sd=await getJSON(await fetch(GEN+'?video_id='+encodeURIComponent(cd.video_id)));
     if(sd.status==='completed'||sd.video_url){ log('  ✓ ready'); return sd.video_url; }
     if(sd.status==='failed'){ log('  ✗ render failed: '+(sd.error||'')); return null; }
     log('  … '+(sd.status||'processing'));

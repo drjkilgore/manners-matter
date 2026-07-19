@@ -3,6 +3,10 @@
   publish = "."
   functions = "netlify/functions"
 
+# Ensure functions run on a modern Node (global fetch requires Node 18+)
+[build.environment]
+  NODE_VERSION = "20"
+
 # Serve the SPA for the certificate-verify route (optional)
 [[redirects]]
   from = "/verify"
